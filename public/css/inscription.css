@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/*#navb {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 1rem 1.5rem;*/
+
+/*}*/
+
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: red;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-it{
+    margin-left: 3rem;
+
+
+}
+.bouton{
+    margin-left: 650px;
+}
+
+.btn {
+    height: 30px;
+    width: 85px;
+}
+
+.link:hover {
+    color:inherit;
+}
+
+
+.nav-lin{
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+.nav-lin:hover{
+    color: red;
+}
+
+.contain{
+
+    height: 35px;
+}
+
+.Qatra-img{
+    margin-top: -60px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        flex-direction: column;
+        background-color: #404040;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+    .bouton{
+        margin-left: 0px;
+
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-it {
+        margin:  2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+}
+
+
+label,.btn1 {
+    font-size: 1.5rem;
+}
+input {
+    margin-bottom: 10px;
+}
+
+.btn1 {
+    margin-left: 34%;
+}
+
+.link {
+    font-size: 1.3rem;
+}
+
+
+

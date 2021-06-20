@@ -1,0 +1,32 @@
+
+
+h1 {
+    color: #222;
+
+}
+
+.content {
+    text-align: center;
+    display: inline;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.right {
+    float: right;
+    margin-right: 100px;
+}
+
+.left {
+    float: left;
+    margin-left: 100px;
+}
+.image {
+    height: 350px;
+    width: 437.5px;
+}
+.link{
+    font-size:2rem ;
+    color: #222;
+    text-decoration: none;
+}

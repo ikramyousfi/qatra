@@ -1,0 +1,42 @@
+.blood-im{
+    height: 30vw;
+    width: 30vw;
+    float: right;
+    margin-top: -12vw;
+
+}
+.txt{
+    text-align:left;
+    margin-top: 5vw;
+    margin-left: 3vw;
+    font-family: Helvetica, sans-serif;
+
+}
+#titre{
+    color: red;
+    font-size: 1.7vw;
+}
+#activité{
+    color: #404040;
+    font-size: 1.3vw;
+}
+.txt2{
+    text-align: left;
+    font-family: Helvetica,sans-serif;
+    margin-top: 12vw;
+}
+.Qatra-noir{
+    height: 30vw;
+    width: 30vw;
+    float: left;
+    margin-top: -12vw;
+}
+.txt3{
+    text-align: left;
+    font-family: Helvetica,sans-serif;
+    margin-top: 12vw;
+}
+.ccm{
+    font-size: 1.3vw;
+    color: #404040;
+}

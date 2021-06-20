@@ -1,0 +1,129 @@
+#myVideo {
+    margin-top: -250px;
+
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+
+
+}
+#myVideo {
+    position:fixed;
+    z-index: -1;
+}
+.video{
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+@media (max-aspect-ratio: 16/9) {
+    #myVideo{
+        width:auto;
+        height: 100%;
+    }
+}
+@media (max-aspect-ratio: 16/9) {
+    #myVideo {
+        width:auto;
+        height: 100%;
+    }
+}
+.Qatra-slogan{
+    z-index: 1;
+    position:absolute;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 30vw;
+    color: black;
+    width: 50%;
+    font-size: 3vw;
+
+}
+
+#Qatra-image{
+    position:absolute;
+    margin-left: 35vw;
+    margin-top:-13vw;
+    left:0;
+    right:0;
+    top:20vw;
+    height:30vw;
+
+
+}
+
+.Qatra-apr1{
+    height: 50%;
+    width: 50%;
+    float: left;
+    margin-top: 3vw;
+    margin-left: -15vw;
+}
+.text{
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 5vw;
+    margin-right: 5vw;
+    font-family: Helvetica, sans-serif;
+
+}
+#qst{
+    color: red;
+    font-size: 3vw;
+}
+#apr{
+    color: #404040;
+}
+.Qatra-ccm{
+    height: 60%;
+    width: 60%;
+    float: right;
+    margin-top: 3vw;
+    margin-left: -15vw;
+}
+.text2{
+    text-align: center;
+    font-size: 2vw;
+    margin-top: 25vw;
+    margin-left:5vw;
+    font-family: Helvetica, sans-serif;
+
+
+}
+#qst2{
+    color: red;
+    font-size: 3vw;
+}
+#ccm{
+    color: #404040;
+}
+
+
+.carre1{
+    width :20%;
+    height: 20%;
+
+}
+
+.carre2{
+
+width: 20%;
+height: 20%;
+margin-left: 3vw;
+}
+
+.carre3{
+width:20%;
+height:20%;
+margin-left: 3vw;
+
+}
+
+.et{
+margin-top: 29vw;
+}

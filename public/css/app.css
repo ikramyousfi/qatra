@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+
+body {
+    /* font-family: Helvetica, sans-serif; */
+    height: max-content;
+}
+.navbar{
+    background-color: #222;
+    height: 60px;
+}
+
+.nav-link{
+    color: white;
+    font-size: 17px;
+}
+.nav-link:hover{
+    color: red;
+}
+
+/*.navbar-expand-lg{*/
+/*    width: max-content;*/
+/*}*/
+
+.Qatra-img{
+    margin: -50px 10px ;
+}
+
+h1,h2,h3{
+   color: #404040;
+}
+
+
+
