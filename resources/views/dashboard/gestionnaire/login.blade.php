@@ -50,12 +50,12 @@
         @endsection --}}
 
 
-@extends('layouts.app') 
+@extends('layouts.app')
 
- @section('headers')
+@section('headers')
     <title>Gestionnaire login | Home</title>
     <link href="{{ asset('css/loginAdmin.css') }}" rel="stylesheet">
-@endsection 
+@endsection
 
 
 @section('content')
@@ -93,10 +93,11 @@
                             </div>
                             <br>
                             <a href="{{ route('gestionnaire.register') }}" class="link-secondary">Créer un nouveau compte</a>
+                            <br>
+                            <a href="{{ route('gestionnaire.login') }}" class="link-secondary">Se connecter au tant que
+                                donneur</a>
                         </form>
                     </div>
                 </div>
             </div>
         @endsection
-
-         

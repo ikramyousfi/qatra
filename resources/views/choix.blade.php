@@ -11,18 +11,18 @@
     <div class="content">
         <br> 
         <h1>Vous êtes</h1>
-       <a href="{{ route('user.register') }}"> 
-         <div class="left">
+       <a href="{{ route('user.register') }}" class="link"> 
+         <div class="left d-flex-block align-elements-center">
             <img src="{{ asset('photo/user.jpg') }}" alt="donneur"
                     class="image">
-             <p class="link"> Un donneur</p>
+             <p>Un donneur</p>
           </div>
         </a> 
-        <a href="{{ route('gestionnaire.register') }}">
-        <div class="right">
+        <a href="{{ route('gestionnaire.register') }}" class="link">
+        <div class="right d-flex-block align-elements-center">
            <img src="{{ asset('photo/GS.jpg') }}" alt="hopital"
                     class="image">
-            <p class="link" >Un hopital</p>
+            <p>Un hopital</p>
         </div>
         </a>
     </div>
