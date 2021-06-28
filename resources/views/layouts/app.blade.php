@@ -96,7 +96,7 @@
                                         </a></li>
 
                                     <li><a width="20px" class="dropdown-item p-1"
-                                            href="{{ route('gestionnaire.calendar') }}" position="sticky">
+                                            href="/gestionnaire/full-calendar" position="sticky">
                                             Calendar
                                         </a></li>
 
@@ -133,7 +133,7 @@ document.getElementById('logout-form').submit();">
                                     Mes Notifications
                                 </a></li>
 
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.reserve') }}"
+                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.calendar') }}"
                                     position="sticky">
                                     Calendar
                                 </a></li>

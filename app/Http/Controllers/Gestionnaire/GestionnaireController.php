@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Gestionnaire;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UpdateProfileRequest;
@@ -158,10 +159,53 @@ class GestionnaireController extends Controller
         return redirect()->back()->with('message', 'Success your notification has been deleted');
     }
 
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Event::whereDate('start', '>=', $request->start)
+                ->whereDate('end',   '<=', $request->end)
+                ->get(['id', 'title', 'start', 'end']);
+            return response()->json($data);
+        }
+        return view('dashboard.gestionnaire.full-calender');
+    }
+
+    public function action(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->type == 'add') {
+                $event = Event::create([
+                    'title'        =>    $request->title,
+                    'start'        =>    $request->start,
+                    'end'        =>    $request->end
+                ]);
+
+                return response()->json($event);
+            }
+
+            if ($request->type == 'update') {
+                $event = Event::find($request->id)->update([
+                    'title'        =>    $request->title,
+                    'start'        =>    $request->start,
+                    'end'        =>    $request->end
+                ]);
+
+                return response()->json($event);
+            }
+
+            if ($request->type == 'delete') {
+                $event = Event::find($request->id)->delete();
+
+                return response()->json($event);
+            }
+        }
+    }
+
     function update(UpdateProfileRequest $request)
     {
 
         $ges = Auth::guard('doctor')->user();
+        
 
         $ges->update([
 

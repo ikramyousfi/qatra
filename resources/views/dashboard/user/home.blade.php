@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-4">
         <div>
-            <img src="{{ asset('photo/profilepicture.png') }}" style="border-radius: 50%; width:15rem; height:15rem; object-fit:cover;">
+            <img src="{{ asset('photo/profilepicture.png') }}" class="rounded-circle">
         </div>
         <div class="pt-3">
             <div><h3><strong>{{ Auth::user()->username }}</strong></h3></div>
@@ -62,9 +62,9 @@
 
     <tbody>
 
-        <td>{{ ucwords(Auth::user()->allergies) ?? 'non mentionné' }}</td> <br>
-        <td>{{ ucwords(Auth::user()->birthdate) ?? 'non mentionné'}}</td> <br>
-        <td>{{ ucwords(Auth::user()->numero_de_telephone) ?? 'non mentionné'}}</td> <br>
+        <td>{{ ucwords(Auth::user()->allergies) }}</td> <br>
+        <td>{{ ucwords(Auth::user()->birthdate) }}</td> <br>
+        <td>{{ ucwords(Auth::user()->numero_de_telephone)   }}</td> <br>
         </tr>
 
     </tr>

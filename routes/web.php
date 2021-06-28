@@ -51,12 +51,13 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::middleware('auth:web')->group(function () {
         Route::view('/home', 'dashboard.user.home')->name('home');
         Route::post('/logout', 'User\UserController@logout')->name('logout');
-        Route::put('/home', 'User\UserController@update')->name('update');
         Route::get('/notifications', 'User\UserController@notifications')->name('notifications');
-        Route::get('/calendar', 'User\UserController@reserve')->name('reserve');
-        Route::post('/calendar/action', 'User\UserController@action');
+        // Route::get('/calendar', 'User\UserController@reserve')->name('reserve');
+        // Route::post('/calendar/action', 'User\UserController@action');
         Route::get('/edit', 'User\UserController@edit')->name('edit');
         Route::PATCH('/update', 'User\UserController@updateInfos')->name('update');
+        Route::get('full-calender', 'User\UserController@index')->name('calendar');
+        Route::post('full-calender/action', 'User\UserController@action');
     });
 });
 
@@ -98,6 +99,8 @@ Route::prefix('gestionnaire')->name('gestionnaire.')->group(function () {
         Route::view('/register', 'dashboard.gestionnaire.register')->name('register');
         Route::post('/create', 'Gestionnaire\GestionnaireController@create')->name('create');
         Route::post('/check', 'Gestionnaire\GestionnaireController@check')->name('check');
+        Route::get('full-calender', 'FullCalenderController@index')->name('calendar');
+        Route::post('full-calender/action', 'FullCalenderController@action');
     });
 
     Route::middleware('auth:doctor')->group(function () {
@@ -112,11 +115,11 @@ Route::prefix('gestionnaire')->name('gestionnaire.')->group(function () {
         Route::get('/notifications', 'Gestionnaire\GestionnaireController@notifications')->name('notifications');
         Route::post('/deleteNotif/{id}', 'Gestionnaire\GestionnaireController@deleteNotif');
         Route::post('/addNotification', 'Gestionnaire\GestionnaireController@addNotification')->name('addNotification');
-        Route::get('/calendar', 'calendarController@index')->name('calendar');
-        Route::post('/calendar/action', 'calendarController@action');
     });
 });
-
+Route::view('/gestionnaire/full-calendar', 'full-calender');
+Route::get('full-calender', 'FullCalenderController@index');
+Route::post('full-calender/action', 'FullCalenderController@action');
 
 
 Route::view('/choix',  'choix')->name('choice');

@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -32,3 +33,4 @@ class CreateEventsTable extends Migration
         Schema::dropIfExists('events');
     }
 }
+?>

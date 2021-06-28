@@ -12,9 +12,9 @@
             {{ Session::get('message') }}
         </div>
     @endif
-    <form action="{{ route('gestionnaire.update') }}" method="post" style="margin-left:37%">
+    <form  method="post" action="update" enctype="multipart/form-data" style="margin-left:37%">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <div class="form-group col-4">
             <label for="name">Nom</label>
             <input type="text" class="form-control" name="name" id="name" style="width: 400px; height:35px"

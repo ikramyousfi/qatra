@@ -13,6 +13,7 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 
 
 class UserController extends Controller
@@ -33,6 +34,52 @@ class UserController extends Controller
     //
     //        return view('home');
     //    }
+
+    public function index(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Event::whereDate('start', '>=', $request->start)
+                ->whereDate('end',
+                    '<=',
+                    $request->end
+                )
+                ->get(['id', 'title', 'start', 'end']);
+            return response()->json($data);
+        }
+        return view('dashboard.user.full-calender');
+    }
+
+    public function action(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request->type == 'add') {
+                $event = Event::create([
+                    'title'        =>    $request->title,
+                    'start'        =>    $request->start,
+                    'end'        =>    $request->end
+                ]);
+
+                return response()->json($event);
+            }
+
+            if ($request->type == 'update') {
+                $event = Event::find($request->id)->update([
+                    'title'        =>    $request->title,
+                    'start'        =>    $request->start,
+                    'end'        =>    $request->end
+                ]);
+
+                return response()->json($event);
+            }
+
+            if ($request->type == 'delete') {
+                $event = Event::find($request->id)->delete();
+
+                return response()->json($event);
+            }
+        }
+    }
+
     function create(Request $request)
     {
         //Validate Inputs
@@ -101,25 +148,34 @@ class UserController extends Controller
     }
 
 
-    public function update(UpdateProfileRequest $request)
-    {
+    // public function update(UpdateProfileRequest $request)
+    // {
 
-        $user = Auth::guard('web')->user();
+    //     $user = Auth::guard('web')->user();
 
-        $data = request()->validate([
-            'name' => 'required',
-            'prenom' => 'required',
-            'region' => 'required',
-            'numero_de_telephone' => 'required',
-            'adresse' => 'required',
-            'allergies' => 'required',
-            'birthdate' => 'required',
-        ]);
+    //     $data = request()->validate([
+    //         'name' => 'required',
+    //         'prenom' => 'required',
+    //         'region' => 'required',
+    //         'numero_de_telephone' => 'required',
+    //         'adresse' => 'required',
+    //         'allergies' => 'required',
+    //         'birthdate' => 'required',
+    //     ]);
 
-        DB::table('users')->where('username', Auth::user()->username)->update($data);
+        // if (request('image')) {
+        //     $imagePath = request('image')->store('profilePictures', 'public');
+        //     $image = Image::make(public_path("storage/{$imagePath}"))->fit(480, 480);
+        //     $image->save();
+        // }
+        // dd($data);
+        // DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
+        //     $data,
+        //     ['image' => $imagePath]
+        // ));
 
-        return redirect()->back()->with('message', 'You have changed your profile successfully ');
-    }
+    //     return redirect()->back()->with('message', 'You have changed your profile successfully ');
+    // }
 
     function notifications()
     {
@@ -151,11 +207,23 @@ class UserController extends Controller
     {
         $data = request()->validate([
             'name' => 'required',
+            'prenom' => 'required',
             'region' => 'required',
             'numero_de_telephone' => 'required',
-            'password' => 'required|min:5|max:30',
+            'adresse' => 'required',
+            'allergies' => 'required',
+            'birthdate' => 'required',
         ]);
-        // Auth::user()->update($data);
+
+        if ( request('image') ) {
+
+        }
+        dd($data);
+        DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
+            $data,
+            ['image' => $imagePath]
+        ));
+
         DB::table('users')->where('username', Auth::user()->username)->update($data);
 
         return redirect('user/home');
