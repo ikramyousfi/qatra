@@ -15,7 +15,8 @@
 
     <a><img class="Qatra-img" src="{{ asset('photo/logo.ico') }}" alt="img" width="170" height="170"></a>
     <a href="/">Accueil</a>
-    <a href="{{ route('admin.home') }}">Profile</a>
+    <a href="{{ route('admin.home') }}">Profile</a>        
+    <a href="{{ route('admin.messages') }}">Mes messages </a>
     <a href="{{ route('admin.userlist') }}">liste des donneurs</a>
     <a href="{{ route('admin.gslist') }}">Liste des Gestionnaires </a>
     </form>

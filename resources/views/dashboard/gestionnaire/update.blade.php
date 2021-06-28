@@ -12,37 +12,44 @@
             {{ Session::get('message') }}
         </div>
     @endif
-    <form action="{{route('gestionnaire.update')}}" method="post" style="margin-left:37%">
+    <form action="{{ route('gestionnaire.update') }}" method="post" style="margin-left:37%">
         @csrf
         @method('PUT')
-        <div class="form-group col-4" >
+        <div class="form-group col-4">
             <label for="name">Nom</label>
-            <input type="text" class="form-control" name="name" id="name" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->name }}">
+            <input type="text" class="form-control" name="name" id="name" style="width: 400px; height:35px"
+                value="{{ Auth::guard('doctor')->user()->name }}">
         </div>
         <div class="form-group">
             <label for="prenom">Prénom</label>
-            <input type="text" class="form-control" name="prenom" id="prenom" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->prenom }}">
+            <input type="text" class="form-control" name="prenom" id="prenom" style="width: 400px; height:35px"
+                value="{{ Auth::guard('doctor')->user()->prenom }}">
         </div>
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" class="form-control" name="username" id="username" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->username }}">
+            <input type="text" class="form-control" name="username" id="username" style="width: 400px; height:35px"
+                value="{{ Auth::guard('doctor')->user()->username }}">
         </div>
         <div class="form-group">
             <label for="region">Région</label>
-            <input type="text" class="form-control" name="region" id="region" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->region }}">
+            <input type="text" class="form-control" name="region" id="region" style="width: 400px; height:35px"
+                value="{{ Auth::guard('doctor')->user()->region }}">
         </div>
         <div class="form-group">
             <label for="numero_de_telephone">Numéro de téléphone</label>
-            <input type="text" class="form-control" name="numero_de_telephone" id="numero_de_telephone" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->numero_de_telephone }}">
+            <input type="text" class="form-control" name="numero_de_telephone" id="numero_de_telephone"
+                style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->numero_de_telephone }}">
         </div>
 
         <div class="form-group">
-            <label for="numero_de_hopital">Numéro de l'hopital</label>
-            <input type="text" class="form-control" name="numero_de_hopital" id="numero_de_hopital" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->numero_de_hopital }}">
+            <label for="numero_de_hopital">Adresse de l hopital</label>
+            <input type="text" class="form-control" name="numero_de_hopital" id="numero_de_hopital"
+                style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->adresse }}">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" id="email" style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->email }}">
+            <input type="text" class="form-control" name="email" id="email" style="width: 400px; height:35px"
+                value="{{ Auth::guard('doctor')->user()->email }}">
         </div>
 
         <br><br>

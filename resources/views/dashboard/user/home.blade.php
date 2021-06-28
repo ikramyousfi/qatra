@@ -1,57 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{ asset('photo/blood-donation.png') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    <title>User Dashboard | Home</title>
+@extends('layouts.app')
 
-</head>
-<body>
+@section('headers')
+    <title>Home</title>
+@endsection
 
-<div class="container">
+@section('content')
+
+<div class="container pt-3">
+    
     <div class="row">
-        <div class="col-md-6 offset-md-3" style="margin-top: 45px">
-            <h4>user Dashboard</h4><hr>
-            <table class="table table-striped table-inverse table-responsive">
-                <thead class="thead-inverse">
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>{{ Auth::guard('web')->user()->name }}</td>
-                    <td>{{ Auth::guard('web')->user()->email }}</td>
-                    <td>
-                        <a href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-                        <form action="{{ route('user.logout') }}" method="post" class="d-none" id="logout-form">@csrf</form>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="col-4">
+        <div>
+            <img src="{{ asset('photo/profilepicture.png') }}" style="border-radius: 50%; width:15rem; height:15rem; object-fit:cover;">
         </div>
+        <div class="pt-3">
+            <div><h3><strong>{{ Auth::user()->username }}</strong></h3></div>
+        </div>
+        <div>
+                <a href="/user/notifications" style="color: red;text-decoration:none"><h3>Notifications</h3></a>
+            </div>
+        </div>
+        <div class="col-8" style="border-radius: 15px 50px;">
+    <table class="table table-responsive-md table-borderless" style="text-align:left; width: 655px; margin-left:0%; top:5px">
+    <thead>
+
+    <tr>
+        <th style="width: 1% !important;" >Prenom</th>
+        <th style="width: 1% !important;">Nom</th>
+        <th style="width: 1% !important;">Région</th>
+        <th style="width: 1% !important;">Groupe sanguin</th>
+        <th style="width: 1% !important;">Adresse</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+        <td>{{ ucwords(Auth::user()->prenom) }}</td> <br>
+        <td>{{ ucwords(Auth::user()->name) }}</td> <br>
+        <td>{{ ucwords(Auth::user()->region) }}</td> <br>
+        <td>{{ ucwords(Auth::user()->groupe_sanguin) }}</td>
+        <td>{{ ucwords(Auth::user()->adresse) }}</td>
+
+        </tr>
+
+    </tr>
+
+    </tbody>
+</table>
+
+    <table class="table table-responsive-md table-borderless" style="text-align:left; width: 655px; margin-left:0%; top:5px">
+    <thead>
+
+    <tr>
+        <th style="width: 1% !important;" >Allergies</th>
+        <th style="width: 1% !important;">Date de naissance</th>
+        <th style="width: 1% !important;">Numéro de telephone</th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+        <td>{{ ucwords(Auth::user()->allergies) ?? 'non mentionné' }}</td> <br>
+        <td>{{ ucwords(Auth::user()->birthdate) ?? 'non mentionné'}}</td> <br>
+        <td>{{ ucwords(Auth::user()->numero_de_telephone) ?? 'non mentionné'}}</td> <br>
+        </tr>
+
+    </tr>
+
+    </tbody>
+</table>
+        </div>    
     </div>
+
 </div>
-<form action="{{route('user.update')}}" method="post" style="margin-left:37%">
-    @csrf
-    @method('PUT')
-    <div class="form-group col-4" >
-        <label for="name">Nom</label>
-        <input type="text" class="form-control" name="name" id="name" style="width: 400px; height:50px" value="{{ Auth::guard('web')->user()->name }}">
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" name="email" id="email" style="width: 400px; height:50px" value="{{ Auth::guard('web')->user()->email }}">
-    </div>
-
-    <br><br>
-    <button type="submit" class="btn btn-success" style="margin-left:15%;background-color: #404040">Update</button>
-
-</form>
-</body>
-</html>
+@endsection

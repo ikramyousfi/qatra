@@ -20,10 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('prenom');
             $table->string('region');
-            $table->string('groupe_sanguin');
             $table->String('adresse')->nullable();
             $table->String('allergies')->nullable();
             $table->string('birthdate')->nullable();
+            $table->string('sexe')->nullable();
+            $table->string('groupe_sanguin');
             $table->string('numero_de_telephone');
             $table->tinyInteger('IsBan')->default('0');
             $table->timestamp('email_verified_at')->nullable();

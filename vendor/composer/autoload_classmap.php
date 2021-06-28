@@ -20,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\Gestionnaire\\GestionnaireController' => $baseDir . '/app/Http/Controllers/Gestionnaire/GestionnaireController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\User\\UserController' => $baseDir . '/app/Http/Controllers/User/UserController.php',
+    'App\\Http\\Controllers\\calendarController' => $baseDir . '/app/Http/Controllers/calendarController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

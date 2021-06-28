@@ -38,14 +38,17 @@ class GestionnaireController extends Controller
         //Validate inputs
         $request->validate([
             'name' => 'required',
+            'prenom' => 'required',
             'email' => 'required|email|unique:gestionnaires,email',
             'username' => 'required|unique:gestionnaires',
-            'prenom' => 'required',
             'region' => 'required',
-            'numero_de_telephone' => 'required',
+            'numero_de_telephone' => 'required|size:10',
             'adresse' => 'required',
+            'link' => 'required',
             'password' => 'required|min:5|max:30',
             'password-confirm' => 'required|min:5|max:30|same:password',
+        ], [
+            'numero_de_telephone.size' => 'Veillez entrer un numero de telephone valide'
         ]);
 
 
@@ -57,12 +60,13 @@ class GestionnaireController extends Controller
         $ges->region = $request->region;
         $ges->numero_de_telephone = $request->numero_de_telephone;
         $ges->adresse = $request->adresse;
+        $ges->link = $request->link;
         $ges->password = Hash::make($request->password);
 
         $save = $ges->save();
 
-        if ($save) {
-            return redirect()->back()->with('success', 'You are now registered successfully ');
+        if ($save && Auth::guard('doctor')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route('gestionnaire.home');
         } else {
             return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
         }
@@ -93,13 +97,13 @@ class GestionnaireController extends Controller
     function logout()
     {
         Auth::guard('doctor')->logout();
-        return redirect('/');
+        return redirect()->back();
     }
 
     function stock()
     {
         $data = array(DB::table('stocks')->where('id', Auth::guard('doctor')->user()->id)->first());
-        return view('dashboard.gestionnaire.home', compact('data'));
+        return view('dashboard.gestionnaire.stock', compact('data'));
     }
 
     function addNotification(Request $request)
@@ -118,7 +122,7 @@ class GestionnaireController extends Controller
                 ]);
             }
         }
-        return redirect('gestionnaire/home');
+        return redirect()->back();
     }
 
     function updateStock(Request $request)
@@ -136,13 +140,13 @@ class GestionnaireController extends Controller
                 'Op' => $request->input('Op'),
                 'On' => $request->input('On')
             ]);
-        return redirect('gestionnaire/home');
+        return redirect()->back();
     }
 
     function notifications()
     {
         $data = array(DB::table('notifications')->where('gestionnaire_id', (Auth::guard('doctor')->user()->id))->get());
-        
+
         return view('dashboard.gestionnaire.notifications', compact('data'));
     }
 
@@ -151,7 +155,7 @@ class GestionnaireController extends Controller
 
         $notif = Notifications::findOrfail($id);
         $notif->delete();
-        return redirect('/gestionnaire/notifications')->with('message', 'Success your notification has been deleted');
+        return redirect()->back()->with('message', 'Success your notification has been deleted');
     }
 
     function update(UpdateProfileRequest $request)
@@ -160,6 +164,7 @@ class GestionnaireController extends Controller
         $ges = Auth::guard('doctor')->user();
 
         $ges->update([
+
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,
@@ -167,12 +172,8 @@ class GestionnaireController extends Controller
             'region' => $request->region,
             'numero_de_telephone' => $request->numero_de_telephone,
             'adresse' => $request->adresse,
-
-
-
+            'link' => $request->link
         ]);
         return redirect()->back()->with('message', 'You have changed your profile successfully ');
     }
-
-
 }

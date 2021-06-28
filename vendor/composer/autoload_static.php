@@ -524,6 +524,7 @@ class ComposerStaticInit86510088d6c5db4e86baf362fb775478
         'App\\Http\\Controllers\\Gestionnaire\\GestionnaireController' => __DIR__ . '/../..' . '/app/Http/Controllers/Gestionnaire/GestionnaireController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\User\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/UserController.php',
+        'App\\Http\\Controllers\\calendarController' => __DIR__ . '/../..' . '/app/Http/Controllers/calendarController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

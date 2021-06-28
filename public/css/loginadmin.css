@@ -1,0 +1,20 @@
+.login {
+    font-size: 1.5rem;
+}
+
+input{
+    font-size: 5rem;
+}
+
+input, label {
+    height: 3rem;
+    
+}
+
+::placeholder {
+    font-size: 1.5rem;
+}
+
+.btn-secondary {
+    font-size: 2rem;
+}

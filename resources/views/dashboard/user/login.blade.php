@@ -3,7 +3,7 @@
 
 @section('headers')
     <title>Connexion donneur</title>
-     {{-- <link rel="stylesheet" href="{{ asset('css/loginAdmin.css') }}"> --}}
+     <link rel="stylesheet" href="{{ asset('css/loginAdmin.css') }}">
     @endsection
 
 
@@ -16,7 +16,7 @@
                     <img src="{{ asset('photo/loginPage.png') }}" alt="login" width="450px">
             </div>
             <div class="col-md-4 offset-md-3 login" style="margin-top: 80px;">
-                <h3 style="color: #495057  ">Se connecter</h3><hr>
+                <h1 style="color: #495057  ">Se connecter</h1><hr>
                 <form action="{{ route('user.check') }}" method="post" autocomplete="off">
                     @if (Session::get('fail'))
                         <div class="alert alert-danger">

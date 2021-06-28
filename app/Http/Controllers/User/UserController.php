@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
@@ -17,21 +18,21 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
 
-//    public function __construct()
-//    {
-//        $this->middleware('auth:user');
-//    }
+    //    public function __construct()
+    //    {
+    //        $this->middleware('auth:user');
+    //    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-//    public function index()
-//    {
-//
-//        return view('home');
-//    }
+    //    public function index()
+    //    {
+    //
+    //        return view('home');
+    //    }
     function create(Request $request)
     {
         //Validate Inputs
@@ -77,53 +78,33 @@ class UserController extends Controller
             'email.exists' => 'This email does not exist on users table'
         ]);
 
-//        $ban= $request->only('IsBan');
-//
-//            if ($ban == '0')
-//            {
-//                if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password]))
-//                    return redirect()->route('user.home');
-//
-//                else return redirect()->route('user.login')->with('fail', ' Oops, wrong password ');
-//            }
-//            else  if ($ban == '1') return redirect()->route('user.login')->with('fail', ' Oops, You have been banned  ');
-
-
-
-        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password]))
-        {
-            if (Auth::guard('web')->user()->IsBan == 1)
-            {
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            if (Auth::guard('web')->user()->IsBan == 1) {
                 Auth::guard('web')->logout();
                 return redirect()->route('user.login')->with('fail', ' Oops, You been banned');
-            }
-            else
-            {
+            } else {
                 return redirect()->route('user.home');
-
             }
-
-        }
-        else {
+        } else {
             return redirect()->route('user.login')->with('fail', ' Oops, wrong password ');
-
-
         }
     }
 
-    
 
 
 
-    function logout(){
+
+    function logout()
+    {
         Auth::guard('web')->logout();
-        return redirect('/');
+        return redirect()->back();
     }
 
 
-    public function update(UpdateProfileRequest $request){
+    public function update(UpdateProfileRequest $request)
+    {
 
-        $user=Auth::guard('web')->user();
+        $user = Auth::guard('web')->user();
 
         $data = request()->validate([
             'name' => 'required',
@@ -140,6 +121,20 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'You have changed your profile successfully ');
     }
 
+    function notifications()
+    {
+        $data = array(DB::table('notifications')
+            ->where('groupe_sanguin', (Auth::guard('web')->user()->groupe_sanguin))
+            // ->where('region', (Auth::guard('web')->user()->region))
+            ->get());
+
+        return view('dashboard.user.notifications', compact('data'));
+    }
+
+    function edit(User $user)
+    {
+        return view('dashboard.user.edit');
+    }
 
     public function reserve(Request $request)
     {
@@ -152,18 +147,17 @@ class UserController extends Controller
         return view('dashboard.user.calendar');
     }
 
-    function notifications()
+    function updateInfos()
     {
-        $data = array(DB::table('notifications')
-            ->where('groupe_sanguin', (Auth::guard('web')->user()->groupe_sanguin))
-            // ->where('region', (Auth::guard('web')->user()->region))
-            ->get());
+        $data = request()->validate([
+            'name' => 'required',
+            'region' => 'required',
+            'numero_de_telephone' => 'required',
+            'password' => 'required|min:5|max:30',
+        ]);
+        // Auth::user()->update($data);
+        DB::table('users')->where('username', Auth::user()->username)->update($data);
 
-        return view('dashboard.user.notifications', compact('data'));
+        return redirect('user/home');
     }
-
-
-
 }
-
-

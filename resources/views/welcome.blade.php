@@ -22,7 +22,6 @@
 
             <img src="{{ asset('photo/Qatra-noir.ico') }}" id="Qatra-image" alt="">
             <div class="Qatra-slogan">
-
                 <p><strong>Votre sang peut sauver des vies. Chaque goute compte! </strong></p>
             </div>
         </div>

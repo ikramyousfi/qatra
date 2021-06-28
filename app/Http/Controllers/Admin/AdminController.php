@@ -11,6 +11,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
 class AdminController extends Controller
 {
     /**
@@ -19,112 +20,134 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    function check(Request $request){
+    function check(Request $request)
+    {
         //Validate Inputs
         $request->validate([
-            'email'=>'required|email|exists:admins,email',
-            'password'=>'required|min:5|max:30'
-        ],[
-            'email.exists'=>'This email is not exists in admins table'
+            'email' => 'required|email|exists:admins,email',
+            'password' => 'required|min:5|max:30'
+        ], [
+            'email.exists' => 'This email is not exists in admins table'
         ]);
 
-        $creds = $request->only('email','password');
+        $creds = $request->only('email', 'password');
 
-        if( Auth::guard('admin')->attempt($creds) ){
+        if (Auth::guard('admin')->attempt($creds)) {
             return redirect()->route('admin.home');
-        }else{
-            return redirect()->route('admin.login')->with('fail','Incorrect credentials');
+        } else {
+            return redirect()->route('admin.login')->with('fail', 'Incorrect credentials');
         }
     }
 
-    function logout(){
+    function logout()
+    {
         Auth::guard('admin')->logout();
-        return redirect('/');
+        return redirect()->back();;
     }
 
     public function displayuser()
     {
-//        if(Auth::user()->role == 'admin')
-        $data= User::all();
+        //        if(Auth::user()->role == 'admin')
+        $data = User::all();
 
-        return view('dashboard.admin.usertable',['key'=>$data]);
-
-
+        return view('dashboard.admin.usertable', ['key' => $data]);
     }
 
     public function displaygs()
     {
-//        if(Auth::user()->role == 'admin')
-        $value= Gestionnaire::all();
+        //        if(Auth::user()->role == 'admin')
+        $value = Gestionnaire::all();
 
-        return view('dashboard.admin.gstable',['cle'=>$value]);
+        return view('dashboard.admin.gstable', ['cle' => $value]);
     }
 
 
-    public function deleteuser($id){
-
-        $users= User::findOrfail($id);
-        $users->delete();
-        return redirect('/admin/userT')->with('message','Success your data has been deleted');
-
-    }
-
-    public function deletegs($id){
-        $gs= Gestionnaire::findOrfail($id);
-        $gs->delete();
-        return redirect('/admin/gsT')->with('message','Success your data has been deleted');
-    }
-
-    public function changestatus($id)
+    function deleteuser($id)
     {
-       $user= User::find($id);
 
-       if ($user->IsBan=='1'){
-           $status='0';
-       }
-       else{
-           $status='1';
+        $users = User::findOrfail($id);
+        $users->delete();
+        return redirect('/admin/userT')->with('message', 'Success your data has been deleted');
+    }
+
+    function deletegs($id)
+    {
+        $gs = Gestionnaire::findOrfail($id);
+        $gs->delete();
+        return redirect('/admin/gsT')->with('message', 'Success your data has been deleted');
+    }
+
+    function changestatus($id)
+    {
+        $user = User::find($id);
+
+        if ($user->IsBan == '1') {
+            $status = '0';
+        } else {
+            $status = '1';
         }
 
-       $values =array('IsBan'=>$status);
-        DB::table('users')->where('id',$id)->update($values);
+        $values = array('IsBan' => $status);
+        DB::table('users')->where('id', $id)->update($values);
 
 
         return redirect('/admin/userT')->withMessage('It has been changed successfully');
-
     }
 
-    public function changestatusgs($id)
+    function changestatusgs($id)
     {
-        $gs= Gestionnaire::find($id);
+        $gs = Gestionnaire::find($id);
 
-        if ($gs->IsBan=='1'){
-            $state='0';
-        }
-        else{
-            $state='1';
+        if ($gs->IsBan == '1') {
+            $state = '0';
+        } else {
+            $state = '1';
         }
 
-        $vals =array('IsBan'=>$state);
-        DB::table('gestionnaires')->where('id',$id)->update($vals);
+        $vals = array('IsBan' => $state);
+        DB::table('gestionnaires')->where('id', $id)->update($vals);
 
 
         return redirect('/admin/gsT')->withMessage('It has been changed successfully');
-
     }
 
-//    public function edit(){
-//       return view('dashboard.admin.home');
-//
-//    }
-    public function update(UpdateProfileRequest $request){
-     $admin = Admin::find(1);
+    //    public function edit(){
+    //       return view('dashboard.admin.home');
+    //
+    //    }
+    public function update(UpdateProfileRequest $request)
+    {
+        $admin = Admin::find(1);
         $admin->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
         ]);
-             return redirect()->back()->with('message', 'You have updated your profile successfully ');
+        return redirect()->back()->with('message', 'You have updated your profile successfully ');
+    }
+
+    function messages()
+    {
+        $data = DB::table('messages')->get();
+
+        // dd($data);
+        return view('dashboard.admin.messages', compact('data'));
+    }
+
+    function inbox($id)
+    {
+        $data = DB::table('messages')->where('id', $id)->get();
+
+        // dd($data);  
+        return view('dashboard.admin.inbox', compact('data'));
+    }
+
+    public function deleteMessage($id)
+    {
+
+        $query = DB::table('messages')->where('id', $id)->delete();
+
+        return redirect()->back()->with('message', 'Success the message has been deleted');
     }
 }
 
@@ -168,5 +191,3 @@ class AdminController extends Controller
 //        return redirect('/admin/requests');
 //
 //    }
-
-

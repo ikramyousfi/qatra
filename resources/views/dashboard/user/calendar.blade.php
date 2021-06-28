@@ -18,20 +18,23 @@
 
 <div class="container">
     <br />
-    <h1 class="text-center text-primary">selectionner une date qui vous convient pour donner votre sang</h1>
+    <h1 class="text-center text-secondary">Selectionner une date qui vous convient pour donner votre sang</h1>
     <br />
 
     <div id="calendar"></div>
 
 </div>
-
+   
 <script>
+
 $(document).ready(function () {
+
     $.ajaxSetup({
         headers:{
             'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
         }
     });
+
     var calendar = $('#calendar').fullCalendar({
         editable:true,
         header:{
@@ -44,8 +47,9 @@ $(document).ready(function () {
         selectHelper: true,
         editable:true,
     });
+
 });
   
 </script>
-
+  
 @endsection
