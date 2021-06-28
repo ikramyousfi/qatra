@@ -41,6 +41,27 @@ $(document).ready(function () {
 
     });
 
+    eventClick:function(event)
+        {
+            if(confirm("Are you sure you want to remove it?"))
+            {
+                var id = event.id;
+                $.ajax({
+                    url:"/full-calender/action",
+                    type:"POST",
+                    data:{
+                        id:id,
+                        type:"delete"
+                    },
+                    success:function(response)
+                    {
+                        calendar.fullCalendar('refetchEvents');
+                        alert("Event Deleted Successfully");
+                    }
+                })
+            }
+        }
+
 });
   
 </script>

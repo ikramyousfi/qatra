@@ -62,7 +62,7 @@
                             <a class="nav-link" href="{{ route('user.notifications') }}">Notifications</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.reserve') }}">Calendar</a>
+                            <a class="nav-link" href="{{ route('user.calendar') }}">Calendar</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
