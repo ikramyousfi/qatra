@@ -7,6 +7,7 @@
 
 @section('content') --}}
 
+
     <!DOCTYPE html>
 <html>
 <head>
