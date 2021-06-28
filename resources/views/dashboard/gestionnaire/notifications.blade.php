@@ -6,8 +6,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mt-4">
+        <div class="row justify-content-center pt-2"> 
+            <h2 style="text-align: center"> Mes notifications:  </h2>
+            <div class="col-md-8">
                 @if (Session::get('message'))
                     <div class="alert alert-success" >
                         {{ Session::get('message') }}

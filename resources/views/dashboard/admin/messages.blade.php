@@ -1,25 +1,12 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('headers')
-    <title>Home</title>
-    <link href="{{ asset('css/messages.css') }}" rel="stylesheet">
+    <title>Profile | Home</title>
 @endsection
 
-@section('content') --}}
+@section('content')
 
-    <!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('photo/blood-donation.png') }}">
-    <title>Liste des donneurs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-</head>
-<body>
-
-<div id="mySidenav" class="sidenav">
+{{-- <div id="mySidenav" class="sidenav">
 
     <a><img class="Qatra-img" src="{{ asset('photo/logo.ico') }}" alt="img" width="170" height="170"></a>
     <a href="/">Accueil</a>
@@ -32,7 +19,7 @@
     <form action="{{ route('admin.logout') }}" method="post" class="d-none" id="logout-form">
         @csrf
     </form>
-</div>
+</div> --}}
     <div class="container" style="right: 400px">
         <div class="row justify-content-center">
             <div class="col-md-8 mt-4">
@@ -79,6 +66,4 @@
             </div>
         </div>
     </div>
-{{-- @endsection --}}
-</body>
-</html>     
+    @endsection  

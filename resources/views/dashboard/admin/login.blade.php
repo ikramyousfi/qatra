@@ -33,7 +33,9 @@
                             <label for="password">Mot de passe</label>
                             <input type="password" class="form-control" name="password" placeholder="Entrez votre mot de passe"
                                 value="{{ old('password') }}">
-                            <span class="text-danger">@error('password'){{ $message }}@enderror</span>
+                            <span class="text-danger">
+                                @error('password'){{ $message }}@enderror
+                                </span>
                             </div>
                             <br>
 

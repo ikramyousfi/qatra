@@ -3,7 +3,7 @@
     <title>Notifications</title>
 @endsection
 @section('content')
-    <h1> Mes notifications</h1>
+    <h3 style="text-align: center"> Mes notifications:  </h3>
     <br>
     @foreach ($data[0] as $v)
                         @if ($v->region == Auth::guard('web')->user()->region)
