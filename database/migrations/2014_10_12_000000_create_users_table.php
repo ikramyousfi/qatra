@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->String('adresse')->nullable();
             $table->String('allergies')->nullable();
             $table->string('birthdate')->nullable();
-            $table->string('sexe')->nullable();
+            $table->string('sexe');
             $table->string('groupe_sanguin');
             $table->string('numero_de_telephone');
             $table->tinyInteger('IsBan')->default('0');

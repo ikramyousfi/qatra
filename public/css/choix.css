@@ -1,8 +1,5 @@
-
-
 h1 {
     color: #222;
-
 }
 
 .content {
@@ -22,11 +19,35 @@ h1 {
     margin-left: 100px;
 }
 .image {
-    height: 350px;
-    width: 437.5px;
+    height: 55vh;
+    width: 35vw;
 }
-.link{
-    font-size:2rem ;
+.link {
+    font-size: 2rem;
     color: #222;
     text-decoration: none;
+}
+.link:hover {
+    color: #ff4f5a;
+}
+@media only screen and (max-width: 991px) {
+    .left {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .right {
+        float: none;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .image {
+        width: 90vw;
+        height: 30vh;
+    }
+    .content {
+        display: block;
+        justify-content: center;
+        margin: auto;
+    }
 }
