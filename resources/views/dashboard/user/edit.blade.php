@@ -37,18 +37,6 @@
                 <span class="text-danger">@error('numero_de_telephone'){{ $message }} @enderror</span>
             </div>
             <div class="form-group">
-                <label for="password">Password :</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter password"
-                    value="{{ old('password') }}">
-                <span class="text-danger">@error('password'){{ $message }} @enderror</span>
-            </div>
-            <div class="form-group">
-                <label for="password-confirm">Confirmer le mot de passe :</label>
-                <input type="password" class="form-control" name="password-confirm" placeholder="Enter confirm password"
-                    value="{{ old('password-confirm') }}">
-                <span class="text-danger">@error('password-confirm'){{ $message }} @enderror</span>
-            </div>
-            <div class="form-group">
                 <label for="name">Adresse :</label>
                 <input type="text" class="form-control" name="adresse" placeholder="Entre votre adresse"
                     value="{{ old('adresse') ?? Auth::user()->adresse }}">

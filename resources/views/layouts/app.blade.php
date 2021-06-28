@@ -52,9 +52,51 @@
                 </button>
 
                 <div class="collapse navbar-collapse  p-2 bg-dark" id="navbarSupportedContent">
+                   
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @if (Auth::guard('web')->check())
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Acceuil</a>
+                            <a class="nav-link" href="{{ route('user.home') }}">Profile</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.notifications') }}">Notifications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.reserve') }}">Calendar</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
+                        </li>
+                       
+                         @elseif (Auth::guard('doctor')->check()) 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gestionnaire.home') }}">Profile</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gestionnaire.stock') }}">Stock</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gestionnaire.notifications') }}">Notifications</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gestionnaire.calendar') }}">Calendar</a>
+                        </li>
+                        @elseif (Auth::guard('admin')->check()) 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.home') }}">Profile</a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.messages') }}">Messages</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.userlist') }}">Donneurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.gslist') }}">Gestionnaires</a>
+                        </li>
+                        @elseif (Auth::guest()) 
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Accueil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('apropos') }}">A propos</a>
@@ -62,8 +104,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
                         </li>
+@endif
+
                     </ul>
-                    <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto">
                         @if (Auth::guard('doctor')->check())
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button"
@@ -75,32 +119,12 @@
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"
                                     style="left:-75px ">
 
-                                    <li><a width="20px" class="dropdown-item p-1"
-                                            href="{{ route('gestionnaire.home') }}" position="sticky">
-                                            Profile
-                                        </a></li>
-
-                                    <li><a width="20px" class="dropdown-item p-1"
-                                            href="{{ route('gestionnaire.stock') }}" position="sticky">
-                                            Stock
-                                        </a></li>
-
+                               
                                     <li><a width="20px" class="dropdown-item p-1"
                                             href="{{ route('gestionnaire.update') }}" position="sticky">
                                             Update Profile
                                         </a></li>
 
-                                    <li><a width="20px" class="dropdown-item p-1"
-                                            href="{{ route('gestionnaire.notifications') }}" position="sticky">
-                                            Notifications
-                                        </a></li>
-
-                                    <li><a width="20px" class="dropdown-item p-1"
-                                            href="{{ route('gestionnaire.calendar') }}" position="sticky">
-                                            Calendar
-                                        </a></li>
-
-                                    <li>
                                     <li><a width="20px" class="dropdown-item p-1"
                                             href="{{ route('gestionnaire.logout') }}" position="sticky" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
@@ -123,25 +147,13 @@ document.getElementById('logout-form').submit();">
 
                         <ul class="dropdown-menu dropdown-menu-right hamburger" aria-labelledby="navbarDropdownMenuLink"
                             style="left: -80px">
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.home') }}"
-                                    position="sticky">
-                                    Profile
-                                </a></li>
-
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.notifications') }}"
-                                    position="sticky">
-                                    Mes Notifications
-                                </a></li>
-
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.reserve') }}"
-                                    position="sticky">
-                                    Calendar
-                                </a></li>
-
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.edit') }}"
+                           
+                               
+                                <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.edit') }}"
                                     position="sticky">
                                     Edit profile
-                                </a></li>
+                                </a></li> 
+                        
 
                             <li><a width="20px" class="dropdown-item p-1" href="{{ route('logout') }}"
                                     position="sticky" onclick="event.preventDefault();
@@ -204,7 +216,7 @@ document.getElementById('logout-form').submit();">
 
 
         </nav>
-        <main class="main mb-2">
+        <main class="main mb-2 ">
             @yield('content')
         </main>
     </div>

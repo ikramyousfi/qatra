@@ -1,16 +1,11 @@
+@extends('layouts.app')
 
-    <!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ asset('photo/blood-donation.png') }}">
-    <title>Liste des donneurs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+@section('headers')
+    <title>Profile | Home</title>
+@endsection
 
-    <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-</head>
-<body>
-
+@section('content')
+{{-- 
 <div id="mySidenav" class="sidenav">
 
     <a><img class="Qatra-img" src="{{ asset('photo/logo.ico') }}" alt="img" width="170" height="170"></a>
@@ -24,7 +19,7 @@
     <form action="{{ route('admin.logout') }}" method="post" class="d-none" id="logout-form">
         @csrf
     </form>
-</div>
+</div> --}}
 
 <br> <br>
 <h3 style="margin-left:55%; ">La liste des donneurs</h3> <hr>
@@ -86,5 +81,4 @@
 
     </tbody>
 </table>
-</body>
-</html>
+@endsection
