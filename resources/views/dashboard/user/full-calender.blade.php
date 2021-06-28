@@ -38,29 +38,40 @@ $(document).ready(function () {
             right:'month,agendaWeek,agendaDay'
         },
         events:'/full-calender',
+        eventClick:function(event)
+        {
+                prompt('this is event.count : ' + event.count);
+                prompt('this is event.id : ' + event.id);
+                prompt('this is event : ' + event);
+                var count = event.count;
+                console.log(event);
+            if(confirm("voulez vous venir ?"))
+            {
+                var id = event.id;
+                // prompt('this is event.id : ' + event.id);
+                // prompt('this is event.id : ' + event.title);
+                // prompt('this is event.id : ' + event.start);
+                //alert("you are in line 48");
+                //alert(count);
+                $.ajax({
+                url:"/full-calender/action",
+                type:"POST",
+                data:{
+                    count: count,
+                    type: 'update'
+                },
+                success:function(response)
+                {
+                    calendar.fullCalendar('refetchEvents');
+                    alert("Event Updated Successfully");
+                }
+            })
+            }
+        }
 
     });
 
-    eventClick:function(event)
-        {
-            if(confirm("Are you sure you want to remove it?"))
-            {
-                var id = event.id;
-                $.ajax({
-                    url:"/full-calender/action",
-                    type:"POST",
-                    data:{
-                        id:id,
-                        type:"delete"
-                    },
-                    success:function(response)
-                    {
-                        calendar.fullCalendar('refetchEvents');
-                        alert("Event Deleted Successfully");
-                    }
-                })
-            }
-        }
+    
 
 });
   

@@ -43,7 +43,7 @@ class UserController extends Controller
                     '<=',
                     $request->end
                 )
-                ->get(['id', 'title', 'start', 'end']);
+                ->get(['id', 'title', 'start', 'end', 'count']);
             return response()->json($data);
         }
         return view('dashboard.user.full-calender');
@@ -52,28 +52,10 @@ class UserController extends Controller
     public function action(Request $request)
     {
         if ($request->ajax()) {
-            if ($request->type == 'add') {
-                $event = Event::create([
-                    'title'        =>    $request->title,
-                    'start'        =>    $request->start,
-                    'end'        =>    $request->end
-                ]);
-
-                return response()->json($event);
-            }
-
             if ($request->type == 'update') {
                 $event = Event::find($request->id)->update([
-                    'title'        =>    $request->title,
-                    'start'        =>    $request->start,
-                    'end'        =>    $request->end
+                    'count'=>$request->count
                 ]);
-
-                return response()->json($event);
-            }
-
-            if ($request->type == 'delete') {
-                $event = Event::find($request->id)->delete();
 
                 return response()->json($event);
             }
@@ -197,7 +179,7 @@ class UserController extends Controller
         if ($request->ajax()) {
             $data = Event::whereDate('start', '>=', $request->start)
                 ->whereDate('end',   '<=', $request->end)
-                ->get(['id', 'title', 'start', 'end']);
+                ->get(['id', 'title', 'start', 'end', 'count']);
             return response()->json($data);
         }
         return view('dashboard.user.calendar');
@@ -214,15 +196,6 @@ class UserController extends Controller
             'allergies' => 'required',
             'birthdate' => 'required',
         ]);
-
-        if ( request('image') ) {
-
-        }
-        dd($data);
-        DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
-            $data,
-            ['image' => $imagePath]
-        ));
 
         DB::table('users')->where('username', Auth::user()->username)->update($data);
 

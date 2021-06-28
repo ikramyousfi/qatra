@@ -164,7 +164,7 @@ class GestionnaireController extends Controller
         if ($request->ajax()) {
             $data = Event::whereDate('start', '>=', $request->start)
                 ->whereDate('end',   '<=', $request->end)
-                ->get(['id', 'title', 'start', 'end']);
+                ->get(['id', 'title', 'start', 'end', 'count']);
             return response()->json($data);
         }
         return view('dashboard.gestionnaire.full-calender');
@@ -177,7 +177,8 @@ class GestionnaireController extends Controller
                 $event = Event::create([
                     'title'        =>    $request->title,
                     'start'        =>    $request->start,
-                    'end'        =>    $request->end
+                    'end'        =>    $request->end,
+                    'count'        =>    $request->count
                 ]);
 
                 return response()->json($event);
@@ -187,7 +188,8 @@ class GestionnaireController extends Controller
                 $event = Event::find($request->id)->update([
                     'title'        =>    $request->title,
                     'start'        =>    $request->start,
-                    'end'        =>    $request->end
+                    'end'        =>    $request->end,
+                    'count'        =>    $request->count
                 ]);
 
                 return response()->json($event);
