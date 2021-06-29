@@ -49,10 +49,8 @@ Route::prefix('user')->name('user.')->group(function () {
     });
 
     Route::middleware('auth:web')->group(function () {
-        
         Route::view('/home', 'dashboard.user.home')->name('home');
         Route::post('/logout', 'User\UserController@logout')->name('logout');
-<<<<<<< HEAD
         Route::get('/notifications', 'User\UserController@notifications')->name('notifications');
         // Route::get('/calendar', 'User\UserController@reserve')->name('reserve');
         // Route::post('/calendar/action', 'User\UserController@action');
@@ -60,18 +58,8 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::PATCH('/update', 'User\UserController@updateInfos')->name('update');
         Route::get('full-calender', 'User\UserController@index')->name('calendar');
         Route::post('full-calender/action', 'User\UserController@action');
-=======
-      
-        Route::get('/edit', 'User\UserController@edit')->name('edit');
-        Route::PATCH('/update', 'User\UserController@updateInfos')->name('update');
-     
-        // Route::get('/home', 'User\UserController@update_avatar')->name('avatar');
-        
-        Route::get('/notifications', 'User\UserController@notifications')->name('notifications');
         Route::get('/calendar', 'User\UserController@reserve')->name('reserve');
         Route::post('/calendar/action', 'User\UserController@action');
-       
->>>>>>> commit
     });
 });
 
@@ -119,7 +107,7 @@ Route::prefix('gestionnaire')->name('gestionnaire.')->group(function () {
 
     Route::middleware('auth:doctor')->group(function () {
         Route::view('/update', 'dashboard.gestionnaire.update')->name('update');
-        Route::put('/update', 'Gestionnaire\GestionnaireController@updateInfos')->name('update');
+        Route::patch('/update', 'Gestionnaire\GestionnaireController@update')->name('update');
         Route::post('/logout', 'Gestionnaire\GestionnaireController@logout')->name('logout');
         Route::view('/home', 'dashboard.gestionnaire.home')->name('home');
 

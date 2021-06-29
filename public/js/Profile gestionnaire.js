@@ -1,36 +1,37 @@
 var ABp = document.getElementById("ABp");
-var greyarea1 = 100 - ABp.value;
+var greyarea1 = 100 - (ABp.value * 100) / max;
 var percentage1 = document.getElementById("percentage1");
 
 var ABn = document.getElementById("ABn");
-var greyarea2 = 100 - ABn.value;
+var greyarea2 = 100 - (ABn.value * 100) / max;
 var percentage2 = document.getElementById("percentage2");
 
 var Ap = document.getElementById("Ap");
-var greyarea3 = 100 - Ap.value;
+var greyarea3 = 100 - (Ap.value * 100) / max;
 var percentage3 = document.getElementById("percentage3");
 
 var An = document.getElementById("An");
-var greyarea4 = 100 - An.value;
+var greyarea4 = 100 - (An.value * 100) / max;
 var percentage4 = document.getElementById("percentage4");
 
 var Bp = document.getElementById("Bp");
-var greyarea5 = 100 - Bp.value;
+var greyarea5 = 100 - (Bp.value * 100) / max;
 var percentage5 = document.getElementById("percentage5");
 
 var Bn = document.getElementById("Bn");
-var greyarea6 = 100 - Bn.value;
+var greyarea6 = 100 - (Bn.value * 100) / max;
 var percentage6 = document.getElementById("percentage6");
 
 var Op = document.getElementById("Op");
-var greyarea7 = 100 - Op.value;
+var greyarea7 = 100 - (Op.value * 100) / max;
 var percentage7 = document.getElementById("percentage7");
 
 var On = document.getElementById("On");
-var greyarea8 = 100 - On.value;
+var greyarea8 = 100 - (On.value * 100) / max;
 var percentage8 = document.getElementById("percentage8");
 
 var Maj = document.getElementById("maj");
+var max = document.getElementById("max").value;
 
 window.onload = function () {
     // getValues();
@@ -64,7 +65,7 @@ var chart1 = new Chart(ctx1, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [ABp, greyarea1],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -90,7 +91,7 @@ var chart2 = new Chart(ctx2, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [ABn, greyarea2],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -115,7 +116,7 @@ var chart3 = new Chart(ctx3, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [Ap, greyarea3],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -140,7 +141,7 @@ var chart4 = new Chart(ctx4, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [An, greyarea4],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -165,7 +166,7 @@ var chart5 = new Chart(ctx5, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [Bp, greyarea5],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -190,7 +191,7 @@ var chart6 = new Chart(ctx6, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [Bn, greyarea6],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -215,7 +216,7 @@ var chart7 = new Chart(ctx7, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [Op, greyarea7],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -240,7 +241,7 @@ var chart8 = new Chart(ctx8, {
     data: {
         datasets: [
             {
-                label: "# of Votes",
+                label: "% of Stock",
                 data: [On, greyarea8],
                 backgroundColor: ["red", "lightgrey"],
                 borderColor: ["red", "lightgrey"],
@@ -260,103 +261,129 @@ var chart8 = new Chart(ctx8, {
 });
 
 function updateChart1() {
-    if (ABp.value < 0) {
+    if (ABp.value / max < 0) {
         ABp.value = 0;
         document.getElementById("ABp").textContent = 0;
     }
-    let greyarea1 = 100 - ABp.value;
+    if (ABp.value / max > 1) {
+        ABp.value = max;
+        document.getElementById("ABp").textContent = max;
+    }
+    let percentage = Math.round((ABp.value * 100) / max);
+    let greyarea1 = 100 - percentage;
     chart1.data.datasets[0].data = [ABp.value, greyarea1];
-    percentage1.textContent = ABp.value;
+    percentage1.textContent = percentage + "%";
     chart1.update();
 }
 function updateChart2() {
-    if (ABn.value < 0) {
+    if (ABn.value / max < 0) {
         ABn.value = 0;
         document.getElementById("ABn").textContent = 0;
     }
-    let greyarea2 = 100 - ABn.value;
+    if (ABn.value / max > 1) {
+        ABn.value = max;
+        document.getElementById("ABn").textContent = max;
+    }
+    let percentage = Math.round((ABn.value * 100) / max);
+    let greyarea2 = 100 - percentage;
     chart2.data.datasets[0].data = [ABn.value, greyarea2];
-    percentage2.textContent = ABn.value;
+    percentage2.textContent = percentage + "%";
     chart2.update();
+    console.log(max);
 }
 function updateChart3() {
-    if (Ap.value > 100) {
-        Ap.value = 100;
-        document.getElementById("Ap").textContent = "100";
-    } else if (Ap.value < 0) {
+    if (Ap.value / max < 0) {
         Ap.value = 0;
         document.getElementById("Ap").textContent = 0;
     }
-    let greyarea3 = 100 - Ap.value;
+    if (Ap.value / max > 1) {
+        Ap.value = max;
+        document.getElementById("Ap").textContent = max;
+    }
+    let percentage = Math.round((Ap.value * 100) / max);
+    let greyarea3 = 100 - percentage;
     chart3.data.datasets[0].data = [Ap.value, greyarea3];
-    percentage3.textContent = Ap.value;
+    percentage3.textContent = percentage + "%";
     chart3.update();
 }
 
 function updateChart4() {
-    if (An.value < 0) {
+    if (An.value / max < 0) {
         An.value = 0;
         document.getElementById("An").textContent = 0;
     }
-    let greyarea4 = 100 - An.value;
+    if (An.value / max > 1) {
+        An.value = max;
+        document.getElementById("An").textContent = max;
+    }
+    let percentage = Math.round((An.value * 100) / max);
+    let greyarea4 = 100 - percentage;
     chart4.data.datasets[0].data = [An.value, greyarea4];
-    percentage4.textContent = An.value;
+    percentage4.textContent = percentage + "%";
     chart4.update();
 }
 
 function updateChart5() {
-    if (Bp.value > 100) {
-        Bp.value = 100;
-        document.getElementById("Bp").textContent = "100";
-    } else if (Bp.value < 0) {
+    if (Bp.value / max < 0) {
         Bp.value = 0;
         document.getElementById("Bp").textContent = 0;
     }
-    let greyarea5 = 100 - Bp.value;
+    if (Bp.value / max > 1) {
+        Bp.value = max;
+        document.getElementById("Bp").textContent = max;
+    }
+    let percentage = Math.round((Bp.value * 100) / max);
+    let greyarea5 = 100 - percentage;
     chart5.data.datasets[0].data = [Bp.value, greyarea5];
-    percentage5.textContent = Bp.value;
+    percentage5.textContent = percentage + "%";
     chart5.update();
 }
 
 function updateChart6() {
-    if (Bn.value > 100) {
-        Bn.value = 100;
-        document.getElementById("Bn").textContent = "100";
-    } else if (Bn.value < 0) {
+    if (Bn.value / max < 0) {
         Bn.value = 0;
         document.getElementById("Bn").textContent = 0;
     }
-    let greyarea6 = 100 - Bn.value;
+    if (Bn.value / max > 1) {
+        Bn.value = max;
+        document.getElementById("Bn").textContent = max;
+    }
+    let percentage = Math.round((Bn.value * 100) / max);
+    let greyarea6 = 100 - percentage;
     chart6.data.datasets[0].data = [Bn.value, greyarea6];
-    percentage6.textContent = Bn.value;
+    percentage6.textContent = percentage + "%";
     chart6.update();
 }
 
 function updateChart7() {
-    if (Op.value > 100) {
-        Op.value = 100;
-        document.getElementById("Op").textContent = "100";
-    } else if (Op.value < 0) {
+    if (Op.value / max < 0) {
         Op.value = 0;
         document.getElementById("Op").textContent = 0;
     }
-    let greyarea7 = 100 - Op.value;
+    if (Op.value / max > 1) {
+        Op.value = max;
+        document.getElementById("Op").textContent = max;
+    }
+    let percentage = Math.round((Op.value * 100) / max);
+    let greyarea7 = 100 - percentage;
     chart7.data.datasets[0].data = [Op.value, greyarea7];
-    percentage7.textContent = Op.value;
+    percentage7.textContent = percentage + "%";
     chart7.update();
 }
 
 function updateChart8() {
-    if (On.value > 100) {
-        On.value = 100;
-        document.getElementById("On").textContent = "100";
-    } else if (On.value < 0) {
+    if (On.value / max < 0) {
         On.value = 0;
         document.getElementById("On").textContent = 0;
     }
-    let greyarea8 = 100 - On.value;
+    if (On.value / max > 1) {
+        On.value = max;
+        document.getElementById("On").textContent = max;
+    }
+    let percentage = Math.round((On.value * 100) / max);
+    let greyarea8 = 100 - percentage;
     chart8.data.datasets[0].data = [On.value, greyarea8];
-    percentage8.textContent = On.value;
+    percentage8.textContent = percentage + "%";
     chart8.update();
 }
 

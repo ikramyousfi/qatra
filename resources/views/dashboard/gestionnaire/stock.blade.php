@@ -18,7 +18,7 @@
                         <canvas id="chart1" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <h6 id="percentage1" class="percentage" style="text-align: center" style="text-align: center">
+                            <h6 id="percentage1" class="percentage" style="text-align: center">
                             </h6>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                         <canvas id="chart2" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage2" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage2" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -51,7 +51,7 @@
                         <canvas id="chart3" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage3" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage3" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -67,7 +67,7 @@
                         <canvas id="chart4" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage4" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage4" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -83,7 +83,7 @@
                         <canvas id="chart5" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage5" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage5" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -99,7 +99,7 @@
                         <canvas id="chart6" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage6" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage6" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -115,7 +115,7 @@
                         <canvas id="chart7" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage7" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage7" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -131,7 +131,7 @@
                         <canvas id="chart8" class="mychart"></canvas>
                         <br>
                         <div class="absolute-center ">
-                            <div id="percentage8" class="percentage" style="text-align: center"> </div>
+                            <h6 id="percentage8" class="percentage" style="text-align: center"> </h6>
                         </div>
                     </div>
                     <div class='stockform'>
@@ -143,7 +143,7 @@
                 </figure>
 
             </section>
-
+            <input type="hidden" name="max" id="max" value="{{ Auth::guard('doctor')->user()->stock->max }}">
             <input type="hidden" name="id" value="{{ Auth::guard('doctor')->user()->id }}">
             <input type="hidden" name="region" value="{{ Auth::guard('doctor')->user()->region }}">
             <input type="hidden" name="numero_de_telephone"
@@ -154,12 +154,13 @@
             <div class="btns">
                 <button type="submit" class="btn btn-secondary mr-2" id="maj" formaction="updateStock">Mettre à
                     jour</button>
-                <button type="submit" class="btn btn-secondary ml-2 alerte" formaction="addNotification">Envoyer une alerte</button>
-                    
-                
+                <button type="submit" class="btn btn-secondary ml-2 alerte" formaction="addNotification">Envoyer une
+                    alerte</button>
+
+
             </div>
         </form>
-            {{-- <a class="link link-secondary" href="{{ route('gestionnaire.notifications') }}"><button type="submit" class="btn1 alerte">My notifications</button></a> --}}
+        {{-- <a class="link link-secondary" href="{{ route('gestionnaire.notifications') }}"><button type="submit" class="btn1 alerte">My notifications</button></a> --}}
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

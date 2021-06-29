@@ -111,7 +111,7 @@ class GestionnaireController extends Controller
     {
         // dd($request->input('adresse'));
         foreach (array_slice($request->all(), 1, 8) as $key => $value) {
-            if ($value < 30) {
+            if ($value / $request->input('max') < 0.3) {
                 DB::table('notifications')->insert([
                     'region' => $request->input('region'),
                     'gestionnaire_id' => $request->input('id'),
@@ -129,18 +129,17 @@ class GestionnaireController extends Controller
     function updateStock(Request $request)
     {
         // dd($request->all("ABp"));
-        DB::table('stocks')
-            ->where('id', intval($request->input('id')))
-            ->update([
-                'ABp' => intval($request->input('ABp')),
-                'ABn' => $request->input('ABn'),
-                'Ap' => $request->input('Ap'),
-                'An' => $request->input('An'),
-                'Bp' => $request->input('Bp'),
-                'Bn' => $request->input('Bn'),
-                'Op' => $request->input('Op'),
-                'On' => $request->input('On')
-            ]);
+
+        Auth::guard('doctor')->user()->stock->update([
+            'ABp' => intval($request->input('ABp')),
+            'ABn' => $request->input('ABn'),
+            'Ap' => $request->input('Ap'),
+            'An' => $request->input('An'),
+            'Bp' => $request->input('Bp'),
+            'Bn' => $request->input('Bn'),
+            'Op' => $request->input('Op'),
+            'On' => $request->input('On')
+        ]);
         return redirect()->back();
     }
 
@@ -159,7 +158,6 @@ class GestionnaireController extends Controller
         return redirect()->back()->with('message', 'Success your notification has been deleted');
     }
 
-<<<<<<< HEAD
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -205,31 +203,23 @@ class GestionnaireController extends Controller
     }
 
     function update(UpdateProfileRequest $request)
-=======
-    function updateInfos()
->>>>>>> commit
     {
-        $data = request()->validate([
-            'name' => 'required',
-            'prenom' => 'required',
-            'username' => 'required',
-            'region' => 'required',
-            'numero_de_telephone'=>'required',
-            'adresse'=>'required',
-            'link'=>'required',
-            'email'=>'required',
-        ]);
 
-<<<<<<< HEAD
         $ges = Auth::guard('doctor')->user();
-        
-
         $ges->update([
-=======
-       
-        DB::table('gestionnaires')->where('username', Auth::user()->username)->update($data);
->>>>>>> commit
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'prenom' => $request->prenom,
+            'region' => $request->region,
+            'numero_de_telephone' => $request->numero_de_telephone,
+            'adresse' => $request->adresse,
+            'link' => $request->link,
 
-        return redirect('gestionnaire/home');
+        ]);
+        Auth::guard('doctor')->user()->stock->update([
+            'max' => $request->max,
+        ]);
+        return redirect()->back()->with('message', 'You have changed your profile successfully ');
     }
 }
