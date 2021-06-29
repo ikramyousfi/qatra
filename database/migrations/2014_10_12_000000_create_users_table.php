@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('prenom');
             $table->string('region');
+            $table->string('avatar')->default('default.jpg');
             $table->String('adresse')->nullable();
             $table->String('allergies')->nullable();
             $table->string('birthdate')->nullable();

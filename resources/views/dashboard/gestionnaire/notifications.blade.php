@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('headers')
-    <title>Home</title>
+    <title>Gestionnaire | notifications</title>
 @endsection
 
 @section('content')

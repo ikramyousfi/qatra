@@ -23,10 +23,11 @@
     </div> --}}
 
     <br><br>
-    <h4 style="margin-left:55%;">Admin Dashboard</h4>
-    <hr>
+    <div style="margin-left:35vw;">
+    <h3 style="margin-left:7vw" >Admin Dashboard</h3>
 
-    <form action="{{ route('admin.update') }}" method="post" style="margin-left:50%">
+
+    <form action="{{ route('admin.update') }}" method="post">
 
         @if (Session::get('message'))
             <span class="alert alert-success">
@@ -56,5 +57,6 @@
         <button type="submit" class="btn btn-success" style="margin-left:15%;background-color: #404040">Update</button>
 
     </form>
+</div>
 
     @endsection

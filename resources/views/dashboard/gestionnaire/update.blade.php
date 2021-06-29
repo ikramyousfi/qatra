@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('headers')
-    <title>Gestionnaire Dashboard | Home</title>
+    <title>Gestionnaire Profile | Edit</title>
 @endsection
 
 @section('content')
@@ -44,16 +44,22 @@
         </div>
         
         <div class="form-group">
-            <label for="numero_de_hopital">Adresse de l hopital</label>
-            <input type="text" class="form-control" name="numero_de_hopital" id="numero_de_hopital"
-            style="width: 400px; height:35px" value="{{ Auth::guard('doctor')->user()->adresse }}">
+            <label for="adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="adresse" style="width: 400px; height:35px"
+            value="{{ Auth::guard('doctor')->user()->adresse }}">
         </div>
+        <div class="form-group">
+            <label for="link">Lien du map</label>
+            <input type="text" class="form-control" name="link" id="link" style="width: 400px; height:35px"
+            value="{{ Auth::guard('doctor')->user()->link }}">
+        </div>
+
         <div class="form-group">
             <label for="email">Email</label>
             <input type="text" class="form-control" name="email" id="email" style="width: 400px; height:35px"
             value="{{ Auth::guard('doctor')->user()->email }}">
         </div>
-
+      
         <br><br>
         <button type="submit" class="btn btn-success" style="margin-left:17%;background-color: #404040">Update</button>
     </form>

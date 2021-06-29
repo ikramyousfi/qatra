@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('headers')
 
-    <title>Gestionnaire Register</title>
+    <title>Gestionnaire | Register</title>
 @endsection
 
 @section('content')

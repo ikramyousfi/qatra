@@ -159,6 +159,7 @@ class GestionnaireController extends Controller
         return redirect()->back()->with('message', 'Success your notification has been deleted');
     }
 
+<<<<<<< HEAD
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -204,22 +205,31 @@ class GestionnaireController extends Controller
     }
 
     function update(UpdateProfileRequest $request)
+=======
+    function updateInfos()
+>>>>>>> commit
     {
+        $data = request()->validate([
+            'name' => 'required',
+            'prenom' => 'required',
+            'username' => 'required',
+            'region' => 'required',
+            'numero_de_telephone'=>'required',
+            'adresse'=>'required',
+            'link'=>'required',
+            'email'=>'required',
+        ]);
 
+<<<<<<< HEAD
         $ges = Auth::guard('doctor')->user();
         
 
         $ges->update([
+=======
+       
+        DB::table('gestionnaires')->where('username', Auth::user()->username)->update($data);
+>>>>>>> commit
 
-            'name' => $request->name,
-            'email' => $request->email,
-            'username' => $request->username,
-            'prenom' => $request->prenom,
-            'region' => $request->region,
-            'numero_de_telephone' => $request->numero_de_telephone,
-            'adresse' => $request->adresse,
-            'link' => $request->link
-        ]);
-        return redirect()->back()->with('message', 'You have changed your profile successfully ');
+        return redirect('gestionnaire/home');
     }
 }

@@ -28,6 +28,7 @@ class User extends Authenticatable
         'groupe_sanguin',
         'numero_de_telephone',
         'IsBan',
+        'avatar',
         'password',
     ];
 

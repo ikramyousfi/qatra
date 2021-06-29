@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {{-- @extends('layouts.app')
 
 @section('headers')
@@ -54,6 +55,12 @@
 
 @section('headers')
     <title>Gestionnaire login | Home</title>
+=======
+@extends('layouts.app') 
+
+ @section('headers')
+    <title>Gestionnaire | login</title>
+>>>>>>> commit
     <link href="{{ asset('css/loginAdmin.css') }}" rel="stylesheet">
 @endsection
 

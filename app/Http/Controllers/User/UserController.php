@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
+use Image;
 
 class UserController extends Controller
 {
@@ -89,10 +90,10 @@ class UserController extends Controller
 
         $save = $user->save();
 
-        if ($save) {
-            return redirect()->back()->with('success', 'You are now registered successfully');
+        if ($save && Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route('user.home');
         } else {
-            return redirect()->back()->with('fail', 'Something went wrong, failed to register');
+            return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
         }
     }
 
@@ -130,6 +131,7 @@ class UserController extends Controller
     }
 
 
+<<<<<<< HEAD
     // public function update(UpdateProfileRequest $request)
     // {
 
@@ -159,6 +161,9 @@ class UserController extends Controller
     //     return redirect()->back()->with('message', 'You have changed your profile successfully ');
     // }
 
+=======
+    
+>>>>>>> commit
     function notifications()
     {
         $data = array(DB::table('notifications')
@@ -186,6 +191,7 @@ class UserController extends Controller
     }
 
     function updateInfos()
+<<<<<<< HEAD
     {
         $data = request()->validate([
             'name' => 'required',
@@ -198,7 +204,25 @@ class UserController extends Controller
         ]);
 
         DB::table('users')->where('username', Auth::user()->username)->update($data);
+=======
+     {
+         $data = request()->validate([
+             'name' => 'required',
+             'prenom' => 'required',
+             'region' => 'required',
+             'numero_de_telephone' => 'required',
+             'groupe_sanguin' => 'required',
+             'adresse' => 'required',
+            ]);
+          
+            Auth::user()->update($data);
+         DB::table('users')->where('username', Auth::user()->username)->update($data);
 
-        return redirect('user/home');
-    }
+         return redirect('user/home');
+     }
+
+   
+   
+>>>>>>> commit
+
 }

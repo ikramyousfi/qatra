@@ -22,7 +22,8 @@ class Gestionnaire extends Authenticatable
         'prenom',
         'region',
         'numero_de_telephone',
-        'numero_de_hopital',
+        'adresse',
+        'link',
         'IsBan',
         'password',
     ];

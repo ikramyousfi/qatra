@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('headers')
-    <title>Calendar</title>    
-    <title>Add Event</title>
+    <title>Gestionnaire | Calendar</title>    
+   
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     

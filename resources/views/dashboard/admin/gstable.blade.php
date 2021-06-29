@@ -23,12 +23,10 @@
     </div> --}}
 
     <br><br>
-    <h3 style="margin-left:55%;">La liste des Gestionnaires</h3>
-    <hr>
-    <br><br>
+    <div style="margin-left:30vw;">
+    <h3 style="margin-left:10vw">La liste des Gestionnaires</h3>
 
-
-    <table class="table table-responsive-md" style="text-align:center; width: 655px; margin-left:43%;">
+    <table class="table table-responsive-md" style="text-align:center; width: 655px;">
         <thead>
             @if (Session::get('message'))
                 <div class="alert alert-success" style="margin-right:80%; left:57%;  ">

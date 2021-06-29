@@ -22,15 +22,16 @@
 </div> --}}
 
 <br> <br>
-<h3 style="margin-left:55%; ">La liste des donneurs</h3> <hr>
+<div style="margin-left:30vw;">
+<h3 style="margin-left:10vw; ">La liste des donneurs</h3>
 <br><br>
 @if (Session::get('message'))
-    <div class="alert alert-success" style="margin-left: 50%;margin-right: 25%">
+    <div class="alert alert-success" style="margin-right: 25%">
         {{ Session::get('message') }}
     </div>
 @endif
 
-<table class="table table-responsive-md" style="text-align:center; width: 655px; margin-left:43%;">
+<table class="table table-responsive-md" style="text-align:center; width: 655px;">
 
     <thead>
 
@@ -81,4 +82,5 @@
 
     </tbody>
 </table>
+</div>
 @endsection

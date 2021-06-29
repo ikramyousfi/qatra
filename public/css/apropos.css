@@ -1,42 +1,60 @@
-.blood-im{
-    height: 30vw;
-    width: 30vw;
-    float: right;
-    margin-top: -12vw;
+body {
+    background-image:  url("../photo/apropos4.jpg");
+    border: 0 !important; 
+}
 
-}
-.txt{
-    text-align:left;
-    margin-top: 5vw;
-    margin-left: 3vw;
-    font-family: Helvetica, sans-serif;
 
-}
-#titre{
-    color: red;
-    font-size: 1.7vw;
-}
-#activité{
-    color: #404040;
-    font-size: 1.3vw;
-}
-.txt2{
-    text-align: left;
-    font-family: Helvetica,sans-serif;
-    margin-top: 12vw;
-}
-.Qatra-noir{
-    height: 30vw;
-    width: 30vw;
-    float: left;
-    margin-top: -12vw;
-}
-.txt3{
-    text-align: left;
-    font-family: Helvetica,sans-serif;
-    margin-top: 12vw;
-}
-.ccm{
-    font-size: 1.3vw;
-    color: #404040;
-}
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .wrap{margin: 0 10px;}
+  
+  .textbox-1 {
+      font-size: 1.5vw;
+      text-align: justify;
+    min-height:100px;
+    display:flex;
+  }
+  .inner{margin:auto;}
+  .row {
+      display: flex;
+      justify-content:space-around;
+      padding:25px 0 ;
+      max-width:1280px;
+      margin:10px auto;
+  }
+  .w60 {
+      flex: 1 0 60%;
+      background:#fff;
+    padding:10px 20px;
+  }
+  .w30{background:#fff;flex:0 0 30%;}
+  .object-fit{
+      overflow:hidden;
+      position:relative;
+  }
+  .object-fit img{
+      position: absolute;
+      top:50%;
+      left:50%;
+      height:auto;
+      width:auto;
+      max-width:100%;
+      margin:auto;
+      transform:translate(-50%, -50%);
+  }
+  @supports (object-fit: cover) {
+    .object-fit img  {
+      position: absolute;
+      left:20px;
+      top:0;
+      height: 100%;
+      width: 90%;
+      transform: none;
+      object-fit: cover;
+    }
+  }

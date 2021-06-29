@@ -2,7 +2,7 @@
 
 @section('headers')
 
-    <title>test</title>
+    <title>Gestionnaire | Stock</title>
     <link rel="stylesheet" href="{{ asset('css/ProfileGestionnaire.css') }}">
 
 @endsection
