@@ -19,7 +19,7 @@
             onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
         <form action="{{ route('admin.logout') }}" method="post" class="d-none" id="logout-form">
             @csrf
-        </form>
+        </form>////
     </div> --}}
 
     <br><br>
