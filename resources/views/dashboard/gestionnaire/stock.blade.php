@@ -9,6 +9,17 @@
 
 @section('content')
     <div>
+
+        <?php
+        $ABp = 'AB+';
+        $ABn = 'AB-';
+        $Ap = 'A+';
+        $An = 'A-';
+        $Bp = 'B+';
+        $Bn = 'B-';
+        $Op = 'O+';
+        $On = 'O-';
+        ?>
         <h4 class="title">Etat du Stock </h4>
         <form method="post">
             @csrf
@@ -23,9 +34,9 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="ABp" class="form-control stock">AB+</label>
-                        <input type="number" min="0" id="ABp" class="form-control" name="ABp"
-                            value="{{ $data[0]->ABp ?? 0 }}">
+                        <label for="AB+" class="form-control stock">AB+</label>
+                        <input type="number" min="0" id="AB+" class="form-control" name="AB+"
+                            value="{{ $data[0]->$ABp }}">
                     </div>
                 </figure>
 
@@ -38,9 +49,9 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="ABn" class="form-control stock">AB-</label>
-                        <input type="number" min="0" id="ABn" class="form-control" name="ABn"
-                            value="{{ $data[0]->ABn ?? 0 }}">
+                        <label for="AB-" class="form-control stock">AB-</label>
+                        <input type="number" min="0" id="AB-" class="form-control" name="AB-"
+                            value="{{ $data[0]->$ABn }}">
                     </div>
 
                 </figure>
@@ -55,9 +66,8 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="Ap" class="form-control stock">A+</label>
-                        <input type="number" min="0" id="Ap" class="form-control" name="Ap"
-                            value="{{ $data[0]->Ap ?? 0 }}">
+                        <label for="A+" class="form-control stock">A+</label>
+                        <input type="number" min="0" id="A+" class="form-control" name="A+" value="{{ $data[0]->$Ap }}">
                     </div>
 
                 </figure>
@@ -71,9 +81,8 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="An" class="form-control stock">A-</label>
-                        <input type="number" min="0" id="An" class="form-control" name="An"
-                            value="{{ $data[0]->An ?? 0 }}">
+                        <label for="A-" class="form-control stock">A-</label>
+                        <input type="number" min="0" id="A-" class="form-control" name="A-" value="{{ $data[0]->$An }}">
                     </div>
 
                 </figure>
@@ -87,9 +96,8 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="Bp" class="form-control stock">B+</label>
-                        <input type="number" min="0" id="Bp" class="form-control" name="Bp"
-                            value="{{ $data[0]->Bp ?? 0 }}">
+                        <label for="B+" class="form-control stock">B+</label>
+                        <input type="number" min="0" id="B+" class="form-control" name="B+" value="{{ $data[0]->$Bp }}">
                     </div>
 
                 </figure>
@@ -103,9 +111,8 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="Bn" class="form-control stock">B-</label>
-                        <input type="number" min="0" id="Bn" class="form-control" name="Bn"
-                            value="{{ $data[0]->Bn ?? 0 }}">
+                        <label for="B-" class="form-control stock">B-</label>
+                        <input type="number" min="0" id="B-" class="form-control" name="B-" value="{{ $data[0]->$Bn }}">
                     </div>
 
                 </figure>
@@ -119,9 +126,8 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="Op" class="form-control stock">O+</label>
-                        <input type="number" min="0" id="Op" class="form-control" name="Op"
-                            value="{{ $data[0]->Op ?? 0 }}">
+                        <label for="O+" class="form-control stock">O+</label>
+                        <input type="number" min="0" id="O+" class="form-control" name="O+" value="{{ $data[0]->$On }}">
                     </div>
 
                 </figure>
@@ -135,9 +141,8 @@
                         </div>
                     </div>
                     <div class='stockform'>
-                        <label for="On" class="form-control stock">O-</label>
-                        <input type="number" min="0" id="On" class="form-control" name="On"
-                            value="{{ $data[0]->On ?? 0 }}">
+                        <label for="O-" class="form-control stock">O-</label>
+                        <input type="number" min="0" id="O-" class="form-control" name="O-" value="{{ $data[0]->$On }}">
                     </div>
 
                 </figure>

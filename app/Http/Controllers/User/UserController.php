@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use App\Models\Event;
+use App\Models\Gestionnaire;
+use App\Models\Notifications;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
-use Image;
 
 class UserController extends Controller
 {
@@ -40,7 +42,8 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             $data = Event::whereDate('start', '>=', $request->start)
-                ->whereDate('end',
+                ->whereDate(
+                    'end',
                     '<=',
                     $request->end
                 )
@@ -55,7 +58,7 @@ class UserController extends Controller
         if ($request->ajax()) {
             if ($request->type == 'update') {
                 $event = Event::find($request->id)->update([
-                    'count'=>$request->count
+                    'count' => $request->count
                 ]);
 
                 return response()->json($event);
@@ -85,6 +88,7 @@ class UserController extends Controller
         $user->prenom = $request->prenom;
         $user->region = $request->region;
         $user->groupe_sanguin = $request->groupe_sanguin;
+        $user->sexe = $request->sexe;
         $user->numero_de_telephone = $request->numero_de_telephone;
         $user->password = Hash::make($request->password);
 
@@ -93,7 +97,7 @@ class UserController extends Controller
         if ($save && Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('user.home');
         } else {
-            return redirect()->back()->with('fail', 'Something went Wrong, failed to register');
+            return redirect()->back()->with('fail', 'Something went wrong, failed to register');
         }
     }
 
@@ -131,7 +135,6 @@ class UserController extends Controller
     }
 
 
-<<<<<<< HEAD
     // public function update(UpdateProfileRequest $request)
     // {
 
@@ -147,31 +150,42 @@ class UserController extends Controller
     //         'birthdate' => 'required',
     //     ]);
 
-        // if (request('image')) {
-        //     $imagePath = request('image')->store('profilePictures', 'public');
-        //     $image = Image::make(public_path("storage/{$imagePath}"))->fit(480, 480);
-        //     $image->save();
-        // }
-        // dd($data);
-        // DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
-        //     $data,
-        //     ['image' => $imagePath]
-        // ));
+    // if (request('image')) {
+    //     $imagePath = request('image')->store('profilePictures', 'public');
+    //     $image = Image::make(public_path("storage/{$imagePath}"))->fit(480, 480);
+    //     $image->save();
+    // }
+    // dd($data);
+    // DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
+    //     $data,
+    //     ['image' => $imagePath]
+    // ));
 
     //     return redirect()->back()->with('message', 'You have changed your profile successfully ');
     // }
 
-=======
-    
->>>>>>> commit
     function notifications()
     {
         $data = array(DB::table('notifications')
             ->where('groupe_sanguin', (Auth::guard('web')->user()->groupe_sanguin))
-            // ->where('region', (Auth::guard('web')->user()->region))
             ->get());
+        $notifs = [];
+        for ($i = 0; $i < sizeof($data[0]); $i++) {
+            $notifs[$i]["id"] = $data[0][$i]->id;
+            $notifs[$i]["ges_id"] = $data[0][$i]->gestionnaire_id;
+            $notifs[$i]["grp"] = $data[0][$i]->groupe_sanguin;
+            $notifs[$i]["date"] = $data[0][$i]->created_at;
+            $gesInfos = Gestionnaire::find($notifs[$i]["ges_id"]);
+            $notifs[$i]["username"] = $gesInfos->username;
+            $notifs[$i]["adresse"] = $gesInfos->adresse;
+            $notifs[$i]["region"] = $gesInfos->region;
+            $notifs[$i]["link"] = $gesInfos->link;
+            $notifs[$i]["email"] = $gesInfos->email;
+            $notifs[$i]["telephone"] = $gesInfos->numero_de_telephone;
+        }
 
-        return view('dashboard.user.notifications', compact('data'));
+        // dd(compact('notifs'));
+        return view('dashboard.user.notifications', compact('notifs'));
     }
 
     function edit(User $user)
@@ -190,39 +204,28 @@ class UserController extends Controller
         return view('dashboard.user.calendar');
     }
 
+
+    function g($id)
+    {
+        $data = DB::table('gestionnaires')->where('id', $id)->get(['username', 'adresse', 'region', 'link', 'numero_de_telephone', 'email'])->toArray();
+        $max = DB::table('stocks')->where('gestionnaire_id', $id)->get('max')->toArray();
+        $data = array_merge($data, $max);
+        return view('dashboard.user.g', compact('data'));
+    }
+
     function updateInfos()
-<<<<<<< HEAD
     {
         $data = request()->validate([
             'name' => 'required',
             'prenom' => 'required',
             'region' => 'required',
             'numero_de_telephone' => 'required',
+            'groupe_sanguin' => 'required',
             'adresse' => 'required',
-            'allergies' => 'required',
-            'birthdate' => 'required',
         ]);
 
-        DB::table('users')->where('username', Auth::user()->username)->update($data);
-=======
-     {
-         $data = request()->validate([
-             'name' => 'required',
-             'prenom' => 'required',
-             'region' => 'required',
-             'numero_de_telephone' => 'required',
-             'groupe_sanguin' => 'required',
-             'adresse' => 'required',
-            ]);
-          
-            Auth::user()->update($data);
-         DB::table('users')->where('username', Auth::user()->username)->update($data);
+        Auth::user()->update($data);
 
-         return redirect('user/home');
-     }
-
-   
-   
->>>>>>> commit
-
+        return redirect('user/home');
+    }
 }

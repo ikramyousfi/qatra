@@ -16,11 +16,7 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('gestionnaire_id');
-            $table->string('region');
-            $table->string('numero_de_telephone');
-            $table->string('adresse');
             $table->string('groupe_sanguin');
-            $table->string('username');
             $table->index('gestionnaire_id');
             $table->timestamps();
         });

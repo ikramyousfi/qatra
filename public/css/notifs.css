@@ -1,0 +1,14 @@
+.notif:hover {
+    background-color: red !important;
+}
+.notif {
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.notif:hover > * {
+    color: white !important;
+}
+.notif:hover > #grp {
+    color: white;
+}

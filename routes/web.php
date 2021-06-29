@@ -60,6 +60,7 @@ Route::prefix('user')->name('user.')->group(function () {
         Route::post('full-calender/action', 'User\UserController@action');
         Route::get('/calendar', 'User\UserController@reserve')->name('reserve');
         Route::post('/calendar/action', 'User\UserController@action');
+        Route::get('/g/{id}', 'User\UserController@g')->name('g');
     });
 });
 

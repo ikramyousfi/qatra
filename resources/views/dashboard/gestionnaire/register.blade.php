@@ -106,7 +106,7 @@
                             <option value="57">57 - El MGhair </option>
                             <option value="58">58 - El Meniaa </option>
                         </select>
-                        <span class="text-danger">@error('groupe_sanguin'){{ $message }} @enderror</span>
+                        <span class="text-danger">@error('region'){{ $message }} @enderror</span>
                     </div>
 
                     <div class="form-group">
