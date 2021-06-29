@@ -28,7 +28,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/nav.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap-5.0.1-dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -40,8 +40,8 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-            <div class="container-fluid bg-dark">
-                <a class="navbar-brand" href="/">
+            <div class="container-fluid bg-darker">
+                <a class="navbar-brand imageContainer" href="/">
                     <img class="Qatra-img" src="{{ asset('photo/logo.ico') }}" alt="logo.ico" width="150"
                         height="150" />
                 </a>
@@ -51,63 +51,64 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse  p-2 bg-dark" id="navbarSupportedContent">
-                   
+                <div class="collapse navbar-collapse  p-2 bg-darker" id="navbarSupportedContent">
+
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         @if (Auth::guard('web')->check())
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.home') }}">Profile</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.notifications') }}">Notifications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.calendar') }}">Calendar</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
-                        </li>
-                       
-                         @elseif (Auth::guard('doctor')->check()) 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('gestionnaire.home') }}">Profile</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('gestionnaire.stock') }}">Stock</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('gestionnaire.notifications') }}">Notifications</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('gestionnaire.calendar') }}">Calendar</a>
-                        </li>
-                        @elseif (Auth::guard('admin')->check()) 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.home') }}">Profile</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.messages') }}">Messages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.userlist') }}">Donneurs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.gslist') }}">Gestionnaires</a>
-                        </li>
-                        @elseif (Auth::guest()) 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('apropos') }}">A propos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
-                        </li>
-@endif
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('user.home') }}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.notifications') }}">Notifications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.calendar') }}">Calendar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
+                            </li>
+
+                        @elseif (Auth::guard('doctor')->check())
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('gestionnaire.home') }}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('gestionnaire.stock') }}">Stock</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                    href="{{ route('gestionnaire.notifications') }}">Notifications</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('gestionnaire.calendar') }}">Calendar</a>
+                            </li>
+                        @elseif (Auth::guard('admin')->check())
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ route('admin.home') }}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.messages') }}">Messages</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.userlist') }}">Donneurs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.gslist') }}">Gestionnaires</a>
+                            </li>
+                        @elseif (Auth::guest())
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('apropos') }}">A propos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
+                            </li>
+                        @endif
 
                     </ul>
-                        <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">
                         @if (Auth::guard('doctor')->check())
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button"
@@ -119,23 +120,11 @@
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"
                                     style="left:-75px ">
 
-                               
+
                                     <li><a width="20px" class="dropdown-item p-1"
                                             href="{{ route('gestionnaire.update') }}" position="sticky">
                                             Update Profile
                                         </a></li>
-
-                                    <li><a width="20px" class="dropdown-item p-1"
-                                            href="{{ route('gestionnaire.notifications') }}" position="sticky">
-                                            Notifications
-                                        </a></li>
-
-                                    <li><a width="20px" class="dropdown-item p-1"
-                                            href="/gestionnaire/full-calendar" position="sticky">
-                                            Calendar
-                                        </a></li>
-
-                                    <li>
                                     <li><a width="20px" class="dropdown-item p-1"
                                             href="{{ route('gestionnaire.logout') }}" position="sticky" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
@@ -158,26 +147,12 @@ document.getElementById('logout-form').submit();">
 
                         <ul class="dropdown-menu dropdown-menu-right hamburger" aria-labelledby="navbarDropdownMenuLink"
                             style="left: -80px">
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.home') }}"
-                                    position="sticky">
-                                    Profile
-                                </a></li>
-
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.notifications') }}"
-                                    position="sticky">
-                                    Mes Notifications
-                                </a></li>
-
-                            <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.calendar') }}"
-                                    position="sticky">
-                                    Calendar
-                                </a></li>
 
                             <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.edit') }}"
                                     position="sticky">
                                     Edit profile
-                                </a></li> 
-                        
+                                </a></li>
+
 
                             <li><a width="20px" class="dropdown-item p-1" href="{{ route('logout') }}"
                                     position="sticky" onclick="event.preventDefault();

@@ -113,11 +113,7 @@ class GestionnaireController extends Controller
         foreach (array_slice($request->all(), 1, 8) as $key => $value) {
             if ($value / $request->input('max') < 0.3) {
                 DB::table('notifications')->insert([
-                    'region' => $request->input('region'),
                     'gestionnaire_id' => $request->input('id'),
-                    'numero_de_telephone' => $request->input('numero_de_telephone'),
-                    'adresse' => $request->input('adresse'),
-                    'username' => $request->input('username'),
                     'groupe_sanguin' => $key,
                     'created_at' => Carbon::now()
                 ]);
@@ -128,17 +124,17 @@ class GestionnaireController extends Controller
 
     function updateStock(Request $request)
     {
-        // dd($request->all("ABp"));
+
 
         Auth::guard('doctor')->user()->stock->update([
-            'ABp' => intval($request->input('ABp')),
-            'ABn' => $request->input('ABn'),
-            'Ap' => $request->input('Ap'),
-            'An' => $request->input('An'),
-            'Bp' => $request->input('Bp'),
-            'Bn' => $request->input('Bn'),
-            'Op' => $request->input('Op'),
-            'On' => $request->input('On')
+            'AB+' => intval($request->input('AB+')),
+            'AB-' => $request->input('AB-'),
+            'A+' => $request->input('A+'),
+            'A-' => $request->input('A-'),
+            'B+' => $request->input('B+'),
+            'B-' => $request->input('B-'),
+            'O+' => $request->input('O+'),
+            'O-' => $request->input('O-')
         ]);
         return redirect()->back();
     }
@@ -204,22 +200,20 @@ class GestionnaireController extends Controller
 
     function update(UpdateProfileRequest $request)
     {
+        $data = request()->validate([
+            'name' => 'string|required',
+            'prenom' => 'string|required',
+            'region' => 'string|required',
+            'numero_de_telephone' => 'string|required|size:10',
+            'adresse' => 'string|required',
+            'link' => 'string|required',
+        ]);
 
         $ges = Auth::guard('doctor')->user();
-        $ges->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'username' => $request->username,
-            'prenom' => $request->prenom,
-            'region' => $request->region,
-            'numero_de_telephone' => $request->numero_de_telephone,
-            'adresse' => $request->adresse,
-            'link' => $request->link,
-
-        ]);
+        $ges->update($data);
         Auth::guard('doctor')->user()->stock->update([
             'max' => $request->max,
         ]);
-        return redirect()->back()->with('message', 'You have changed your profile successfully ');
+        return redirect('gestionnaire/home');
     }
 }

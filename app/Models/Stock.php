@@ -11,14 +11,14 @@ class Stock extends Model
 
     protected $fillable = [
         'max',
-        'ABp',
-        'ABn',
-        'Ap',
-        'An',
-        'Bp',
-        'Bn',
-        'Op',
-        'On'
+        'AB+',
+        'AB-',
+        'A+',
+        'A-',
+        'B+',
+        'B-',
+        'O+',
+        'O-'
     ];
 
     public function gestionnaire()

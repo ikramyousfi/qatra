@@ -1,37 +1,38 @@
-var ABp = document.getElementById("ABp");
+var max = document.getElementById("max").value;
+
+var ABp = document.getElementById("AB+");
 var greyarea1 = 100 - (ABp.value * 100) / max;
 var percentage1 = document.getElementById("percentage1");
 
-var ABn = document.getElementById("ABn");
+var ABn = document.getElementById("AB-");
 var greyarea2 = 100 - (ABn.value * 100) / max;
 var percentage2 = document.getElementById("percentage2");
 
-var Ap = document.getElementById("Ap");
+var Ap = document.getElementById("A+");
 var greyarea3 = 100 - (Ap.value * 100) / max;
 var percentage3 = document.getElementById("percentage3");
 
-var An = document.getElementById("An");
+var An = document.getElementById("A-");
 var greyarea4 = 100 - (An.value * 100) / max;
 var percentage4 = document.getElementById("percentage4");
 
-var Bp = document.getElementById("Bp");
+var Bp = document.getElementById("B+");
 var greyarea5 = 100 - (Bp.value * 100) / max;
 var percentage5 = document.getElementById("percentage5");
 
-var Bn = document.getElementById("Bn");
+var Bn = document.getElementById("B-");
 var greyarea6 = 100 - (Bn.value * 100) / max;
 var percentage6 = document.getElementById("percentage6");
 
-var Op = document.getElementById("Op");
+var Op = document.getElementById("O+");
 var greyarea7 = 100 - (Op.value * 100) / max;
 var percentage7 = document.getElementById("percentage7");
 
-var On = document.getElementById("On");
+var On = document.getElementById("O-");
 var greyarea8 = 100 - (On.value * 100) / max;
 var percentage8 = document.getElementById("percentage8");
 
 var Maj = document.getElementById("maj");
-var max = document.getElementById("max").value;
 
 window.onload = function () {
     // getValues();
@@ -263,30 +264,30 @@ var chart8 = new Chart(ctx8, {
 function updateChart1() {
     if (ABp.value / max < 0) {
         ABp.value = 0;
-        document.getElementById("ABp").textContent = 0;
+        document.getElementById("AB+").textContent = 0;
     }
     if (ABp.value / max > 1) {
         ABp.value = max;
-        document.getElementById("ABp").textContent = max;
+        document.getElementById("AB+").textContent = max;
     }
     let percentage = Math.round((ABp.value * 100) / max);
     let greyarea1 = 100 - percentage;
-    chart1.data.datasets[0].data = [ABp.value, greyarea1];
+    chart1.data.datasets[0].data = [percentage, greyarea1];
     percentage1.textContent = percentage + "%";
     chart1.update();
 }
 function updateChart2() {
     if (ABn.value / max < 0) {
         ABn.value = 0;
-        document.getElementById("ABn").textContent = 0;
+        document.getElementById("AB-").textContent = 0;
     }
     if (ABn.value / max > 1) {
         ABn.value = max;
-        document.getElementById("ABn").textContent = max;
+        document.getElementById("AB-").textContent = max;
     }
     let percentage = Math.round((ABn.value * 100) / max);
     let greyarea2 = 100 - percentage;
-    chart2.data.datasets[0].data = [ABn.value, greyarea2];
+    chart2.data.datasets[0].data = [percentage, greyarea2];
     percentage2.textContent = percentage + "%";
     chart2.update();
     console.log(max);
@@ -294,15 +295,15 @@ function updateChart2() {
 function updateChart3() {
     if (Ap.value / max < 0) {
         Ap.value = 0;
-        document.getElementById("Ap").textContent = 0;
+        document.getElementById("A+").textContent = 0;
     }
     if (Ap.value / max > 1) {
         Ap.value = max;
-        document.getElementById("Ap").textContent = max;
+        document.getElementById("A+").textContent = max;
     }
     let percentage = Math.round((Ap.value * 100) / max);
     let greyarea3 = 100 - percentage;
-    chart3.data.datasets[0].data = [Ap.value, greyarea3];
+    chart3.data.datasets[0].data = [percentage, greyarea3];
     percentage3.textContent = percentage + "%";
     chart3.update();
 }
@@ -310,15 +311,15 @@ function updateChart3() {
 function updateChart4() {
     if (An.value / max < 0) {
         An.value = 0;
-        document.getElementById("An").textContent = 0;
+        document.getElementById("A-").textContent = 0;
     }
     if (An.value / max > 1) {
         An.value = max;
-        document.getElementById("An").textContent = max;
+        document.getElementById("A-").textContent = max;
     }
     let percentage = Math.round((An.value * 100) / max);
     let greyarea4 = 100 - percentage;
-    chart4.data.datasets[0].data = [An.value, greyarea4];
+    chart4.data.datasets[0].data = [percentage, greyarea4];
     percentage4.textContent = percentage + "%";
     chart4.update();
 }
@@ -326,15 +327,15 @@ function updateChart4() {
 function updateChart5() {
     if (Bp.value / max < 0) {
         Bp.value = 0;
-        document.getElementById("Bp").textContent = 0;
+        document.getElementById("B+").textContent = 0;
     }
     if (Bp.value / max > 1) {
         Bp.value = max;
-        document.getElementById("Bp").textContent = max;
+        document.getElementById("B+").textContent = max;
     }
     let percentage = Math.round((Bp.value * 100) / max);
     let greyarea5 = 100 - percentage;
-    chart5.data.datasets[0].data = [Bp.value, greyarea5];
+    chart5.data.datasets[0].data = [percentage, greyarea5];
     percentage5.textContent = percentage + "%";
     chart5.update();
 }
@@ -342,15 +343,15 @@ function updateChart5() {
 function updateChart6() {
     if (Bn.value / max < 0) {
         Bn.value = 0;
-        document.getElementById("Bn").textContent = 0;
+        document.getElementById("B-").textContent = 0;
     }
     if (Bn.value / max > 1) {
         Bn.value = max;
-        document.getElementById("Bn").textContent = max;
+        document.getElementById("B-").textContent = max;
     }
     let percentage = Math.round((Bn.value * 100) / max);
     let greyarea6 = 100 - percentage;
-    chart6.data.datasets[0].data = [Bn.value, greyarea6];
+    chart6.data.datasets[0].data = [percentage, greyarea6];
     percentage6.textContent = percentage + "%";
     chart6.update();
 }
@@ -358,15 +359,15 @@ function updateChart6() {
 function updateChart7() {
     if (Op.value / max < 0) {
         Op.value = 0;
-        document.getElementById("Op").textContent = 0;
+        document.getElementById("O+").textContent = 0;
     }
     if (Op.value / max > 1) {
         Op.value = max;
-        document.getElementById("Op").textContent = max;
+        document.getElementById("O+").textContent = max;
     }
     let percentage = Math.round((Op.value * 100) / max);
     let greyarea7 = 100 - percentage;
-    chart7.data.datasets[0].data = [Op.value, greyarea7];
+    chart7.data.datasets[0].data = [percentage, greyarea7];
     percentage7.textContent = percentage + "%";
     chart7.update();
 }
@@ -374,28 +375,28 @@ function updateChart7() {
 function updateChart8() {
     if (On.value / max < 0) {
         On.value = 0;
-        document.getElementById("On").textContent = 0;
+        document.getElementById("O-").textContent = 0;
     }
     if (On.value / max > 1) {
         On.value = max;
-        document.getElementById("On").textContent = max;
+        document.getElementById("O-").textContent = max;
     }
     let percentage = Math.round((On.value * 100) / max);
     let greyarea8 = 100 - percentage;
-    chart8.data.datasets[0].data = [On.value, greyarea8];
+    chart8.data.datasets[0].data = [percentage, greyarea8];
     percentage8.textContent = percentage + "%";
     chart8.update();
 }
 
 function storage() {
-    window.localStorage.stockPercent1 = ABp.value;
-    window.localStorage.stockPercent2 = ABn.value;
-    window.localStorage.stockPercent3 = Ap.value;
-    window.localStorage.stockPercent4 = An.value;
-    window.localStorage.stockPercent5 = Bp.value;
-    window.localStorage.stockPercent6 = Bn.value;
-    window.localStorage.stockPercent7 = Op.value;
-    window.localStorage.stockPercent8 = On.value;
+    window.localStorage.stockPercent1 = (ABp.value * 100) / max;
+    window.localStorage.stockPercent2 = (ABn.value * 100) / max;
+    window.localStorage.stockPercent3 = (Ap.value * 100) / max;
+    window.localStorage.stockPercent4 = (An.value * 100) / max;
+    window.localStorage.stockPercent5 = (Bp.value * 100) / max;
+    window.localStorage.stockPercent6 = (Bn.value * 100) / max;
+    window.localStorage.stockPercent7 = (Op.value * 100) / max;
+    window.localStorage.stockPercent8 = (On.value * 100) / max;
 }
 
 // function getValues() {

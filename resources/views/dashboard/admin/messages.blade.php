@@ -6,7 +6,7 @@
 
 @section('content')
 
-{{-- <div id="mySidenav" class="sidenav">
+    {{-- <div id="mySidenav" class="sidenav">
 
     <a><img class="Qatra-img" src="{{ asset('photo/logo.ico') }}" alt="img" width="170" height="170"></a>
     <a href="/">Accueil</a>
@@ -20,19 +20,20 @@
         @csrf
     </form>
 </div> --}}
-    <div class="container" style="right: 400px">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mt-4">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="justify-content-center col-md-8 mt-4">
+                <h2 style="text-align: center">Mes messages:</h2>
                 @if (Session::get('message'))
                     <div class="alert alert-success">
                         {{ Session::get('message') }}
                     </div>
                 @endif
-                <div class="list-group mt-5">
-                    {{-- {{dd($data)}} --}}
+                <div class=" mt-5 list-group">
                     @foreach ($data as $v)
 
-                        <a href="./inbox/{{$v->id}}" class="list-group-item list-group-item-action " aria-current="true" style="left: 200px;">
+                        <a href="./inbox/{{ $v->id }}" class="list-group-item list-group-item-action "
+                            aria-current="true">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">From: {{ $v->name }}</h5>
                                 <small>
@@ -51,7 +52,7 @@
 
                             // if (!{{ $v->isRead }}) {
                             //     data = document.getElementsByClassName("list-group-item")
-                                
+
                             // }
                             // alert('test');
                             document.getElementsByClassName("list-group-item").forEach(e => {
@@ -66,4 +67,4 @@
             </div>
         </div>
     </div>
-    @endsection  
+@endsection
