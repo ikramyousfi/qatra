@@ -8,6 +8,12 @@
 @endsection
 
 @section('content')
+    @if (Session::get('message'))
+        <div class="alert alert-success" style="text-align: center">
+            {{ Session::get('message') }}
+        </div>
+    @endif
+
     <div>
 
         <?php
@@ -19,6 +25,14 @@
         $Bn = 'B-';
         $Op = 'O+';
         $On = 'O-';
+        $maxABp = 'maxAB+';
+        $maxABn = 'maxAB-';
+        $maxAp = 'maxA+';
+        $maxAn = 'maxA-';
+        $maxBp = 'maxB+';
+        $maxBn = 'maxB-';
+        $maxOp = 'maxO+';
+        $maxOn = 'maxO-';
         ?>
         <h4 class="title">Etat du Stock </h4>
         <form method="post">
@@ -35,12 +49,14 @@
                     </div>
                     <div class='stockform'>
                         <label for="AB+" class="form-control stock">AB+</label>
-                        <input type="number" min="0" id="AB+" class="form-control" name="AB+"
-                            value="{{ $data[0]->$ABp }}">
+                        <input type="number" min="0" id="AB+" class="form-control" name="AB+" value="{{ $data->$ABp }}">
+                        <label for="maxAB+" class="form-control stock" style="font-size: 0.95rem">max AB+</label>
+                        <input type="number" min="0" id="maxAB+" class="form-control" name="maxAB+"
+                            value="{{ $data->$maxABp }}">
                     </div>
                 </figure>
 
-                <figure class="card">
+                <figure class="card" style="height: 55vh">
                     <div class="chart">
                         <canvas id="chart2" class="mychart"></canvas>
                         <br>
@@ -50,8 +66,10 @@
                     </div>
                     <div class='stockform'>
                         <label for="AB-" class="form-control stock">AB-</label>
-                        <input type="number" min="0" id="AB-" class="form-control" name="AB-"
-                            value="{{ $data[0]->$ABn }}">
+                        <input type="number" min="0" id="AB-" class="form-control" name="AB-" value="{{ $data->$ABn }}">
+                        <label for="maxAB-" class="form-control stock">max AB-</label>
+                        <input type="number" min="0" id="maxAB-" class="form-control" name="maxAB-"
+                            value="{{ $data->$maxABn }}">
                     </div>
 
                 </figure>
@@ -67,7 +85,10 @@
                     </div>
                     <div class='stockform'>
                         <label for="A+" class="form-control stock">A+</label>
-                        <input type="number" min="0" id="A+" class="form-control" name="A+" value="{{ $data[0]->$Ap }}">
+                        <input type="number" min="0" id="A+" class="form-control" name="A+" value="{{ $data->$Ap }}">
+                        <label for="maxA+" class="form-control stock">max A+</label>
+                        <input type="number" min="0" id="maxA+" class="form-control" name="maxA+"
+                            value="{{ $data->$maxAp }}">
                     </div>
 
                 </figure>
@@ -82,7 +103,10 @@
                     </div>
                     <div class='stockform'>
                         <label for="A-" class="form-control stock">A-</label>
-                        <input type="number" min="0" id="A-" class="form-control" name="A-" value="{{ $data[0]->$An }}">
+                        <input type="number" min="0" id="A-" class="form-control" name="A-" value="{{ $data->$An }}">
+                        <label for="maxA-" class="form-control stock">max A-</label>
+                        <input type="number" min="0" id="maxA-" class="form-control" name="maxA-"
+                            value="{{ $data->$maxAn }}">
                     </div>
 
                 </figure>
@@ -97,7 +121,10 @@
                     </div>
                     <div class='stockform'>
                         <label for="B+" class="form-control stock">B+</label>
-                        <input type="number" min="0" id="B+" class="form-control" name="B+" value="{{ $data[0]->$Bp }}">
+                        <input type="number" min="0" id="B+" class="form-control" name="B+" value="{{ $data->$Bp }}">
+                        <label for="maxB+" class="form-control stock">max B+</label>
+                        <input type="number" min="0" id="maxB+" class="form-control" name="maxB+"
+                            value="{{ $data->$maxBp }}">
                     </div>
 
                 </figure>
@@ -112,7 +139,10 @@
                     </div>
                     <div class='stockform'>
                         <label for="B-" class="form-control stock">B-</label>
-                        <input type="number" min="0" id="B-" class="form-control" name="B-" value="{{ $data[0]->$Bn }}">
+                        <input type="number" min="0" id="B-" class="form-control" name="B-" value="{{ $data->$Bn }}">
+                        <label for="maxB-" class="form-control stock">max B-</label>
+                        <input type="number" min="0" id="maxB-" class="form-control" name="maxB-"
+                            value="{{ $data->$maxBn }}">
                     </div>
 
                 </figure>
@@ -127,7 +157,10 @@
                     </div>
                     <div class='stockform'>
                         <label for="O+" class="form-control stock">O+</label>
-                        <input type="number" min="0" id="O+" class="form-control" name="O+" value="{{ $data[0]->$On }}">
+                        <input type="number" min="0" id="O+" class="form-control" name="O+" value="{{ $data->$Op }}">
+                        <label for="maxO+" class="form-control stock">max O+</label>
+                        <input type="number" min="0" id="maxO+" class="form-control" name="maxO+"
+                            value="{{ $data->$maxOp }}">
                     </div>
 
                 </figure>
@@ -142,30 +175,31 @@
                     </div>
                     <div class='stockform'>
                         <label for="O-" class="form-control stock">O-</label>
-                        <input type="number" min="0" id="O-" class="form-control" name="O-" value="{{ $data[0]->$On }}">
+                        <input type="number" min="0" id="O-" class="form-control" name="O-" value="{{ $data->$On }}">
+                        <label for="maxO-" class="form-control stock">max O-</label>
+                        <input type="number" min="0" id="maxO-" class="form-control" name="maxO-"
+                            value="{{ $data->$maxOn }}">
                     </div>
 
                 </figure>
 
             </section>
-            <input type="hidden" name="max" id="max" value="{{ Auth::guard('doctor')->user()->stock->max }}">
             <input type="hidden" name="id" value="{{ Auth::guard('doctor')->user()->id }}">
-            <input type="hidden" name="region" value="{{ Auth::guard('doctor')->user()->region }}">
+            {{-- <input type="hidden" name="region" value="{{ Auth::guard('doctor')->user()->region }}">
             <input type="hidden" name="numero_de_telephone"
                 value="{{ Auth::guard('doctor')->user()->numero_de_telephone }}">
             <input type="hidden" name="adresse" value="{{ Auth::guard('doctor')->user()->adresse }}">
-            <input type="hidden" name="username" value="{{ Auth::guard('doctor')->user()->username }}">
+            <input type="hidden" name="username" value="{{ Auth::guard('doctor')->user()->username }}"> --}}
 
             <div class="btns">
-                <button type="submit" class="btn btn-secondary mr-2" id="maj" formaction="updateStock">Mettre à
-                    jour</button>
-                <button type="submit" class="btn btn-secondary ml-2 alerte" formaction="addNotification">Envoyer une
-                    alerte</button>
+                <button type="submit" class="btn btn-secondary mr-5" id="maj" formaction="updateStock"
+                    onclick="return confirm('Êtes-vous sur de vouloir mettre a jour?')">Mettre à jour</button>
+                <button type="submit" class="btn btn-secondary mr-5 alerte" formaction="addNotification"
+                    onclick="return confirm('Êtes-vous sur de vouloir envoyer l\'alerte?')">Envoyer une alerte</button>
 
 
             </div>
         </form>
-        {{-- <a class="link link-secondary" href="{{ route('gestionnaire.notifications') }}"><button type="submit" class="btn1 alerte">My notifications</button></a> --}}
 
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

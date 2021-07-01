@@ -23,6 +23,7 @@ class Gestionnaire extends Authenticatable
         'region',
         'numero_de_telephone',
         'adresse',
+        'image',
         'link',
         'IsBan',
         'password',

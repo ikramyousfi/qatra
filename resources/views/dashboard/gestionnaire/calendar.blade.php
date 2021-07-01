@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('headers')
-    <title>Gestionnaire | Calendar</title>    
+    <title>Gestionnaire | Calendrier</title>    
    
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -32,8 +32,8 @@
             var calendar = $('#calendar').fullCalendar({
                 editable: true,
                 header: {
-                    left: 'prev,next today',
                     center: 'title',
+                    left: 'prev,next today',
                     right: 'month,agendaWeek,agendaDay'
                 },
                 events: '/calendar',
@@ -55,7 +55,7 @@
                             },
                             success: function(data) {
                                 calendar.fullCalendar('refetchEvents');
-                                alert("Event Created Successfully");
+                                alert("un évenement a été crée avec succès");
                             }
                         })
                     }
@@ -78,7 +78,7 @@
                         },
                         success: function(response) {
                             calendar.fullCalendar('refetchEvents');
-                            alert("Event Updated Successfully");
+                            alert("l'évenement a été mis a jour avec succès");
                         }
                     })
                 },
@@ -99,12 +99,12 @@
                         },
                         success: function(response) {
                             calendar.fullCalendar('refetchEvents');
-                            alert("Event Updated Successfully");
+                            alert("l'évenement a été mis a jour avec succès");
                         }
                     })
                 },
                 eventClick: function(event) {
-                    if (confirm("Are you sure you want to remove it?")) {
+                    if (confirm("Voulez-vous supprimer cet évenement ?")) {
                         var id = event.id;
                         $.ajax({
                             url: "/calendar/action",
@@ -115,7 +115,7 @@
                             },
                             success: function(response) {
                                 calendar.fullCalendar('refetchEvents');
-                                alert("Event Deleted Successfully");
+                                alert("l'évenement a été supprimé avec succès");
                             }
                         })
                     }

@@ -1,32 +1,46 @@
-var max = document.getElementById("max").value;
+var max = document.getElementById("maxAB+").value;
 
 var ABp = document.getElementById("AB+");
 var greyarea1 = 100 - (ABp.value * 100) / max;
 var percentage1 = document.getElementById("percentage1");
 
+max = document.getElementById("maxAB-").value;
+
 var ABn = document.getElementById("AB-");
 var greyarea2 = 100 - (ABn.value * 100) / max;
 var percentage2 = document.getElementById("percentage2");
+
+max = document.getElementById("maxA+").value;
 
 var Ap = document.getElementById("A+");
 var greyarea3 = 100 - (Ap.value * 100) / max;
 var percentage3 = document.getElementById("percentage3");
 
+max = document.getElementById("maxA-").value;
+
 var An = document.getElementById("A-");
 var greyarea4 = 100 - (An.value * 100) / max;
 var percentage4 = document.getElementById("percentage4");
+
+max = document.getElementById("B+").value;
 
 var Bp = document.getElementById("B+");
 var greyarea5 = 100 - (Bp.value * 100) / max;
 var percentage5 = document.getElementById("percentage5");
 
+max = document.getElementById("maxB-").value;
+
 var Bn = document.getElementById("B-");
 var greyarea6 = 100 - (Bn.value * 100) / max;
 var percentage6 = document.getElementById("percentage6");
 
+max = document.getElementById("maxO+").value;
+
 var Op = document.getElementById("O+");
 var greyarea7 = 100 - (Op.value * 100) / max;
 var percentage7 = document.getElementById("percentage7");
+
+max = document.getElementById("maxO-").value;
 
 var On = document.getElementById("O-");
 var greyarea8 = 100 - (On.value * 100) / max;
@@ -262,6 +276,7 @@ var chart8 = new Chart(ctx8, {
 });
 
 function updateChart1() {
+    var max = document.getElementById("maxAB+").value;
     if (ABp.value / max < 0) {
         ABp.value = 0;
         document.getElementById("AB+").textContent = 0;
@@ -277,6 +292,7 @@ function updateChart1() {
     chart1.update();
 }
 function updateChart2() {
+    var max = document.getElementById("maxAB-").value;
     if (ABn.value / max < 0) {
         ABn.value = 0;
         document.getElementById("AB-").textContent = 0;
@@ -293,6 +309,7 @@ function updateChart2() {
     console.log(max);
 }
 function updateChart3() {
+    var max = document.getElementById("maxA+").value;
     if (Ap.value / max < 0) {
         Ap.value = 0;
         document.getElementById("A+").textContent = 0;
@@ -309,6 +326,7 @@ function updateChart3() {
 }
 
 function updateChart4() {
+    var max = document.getElementById("maxAB-").value;
     if (An.value / max < 0) {
         An.value = 0;
         document.getElementById("A-").textContent = 0;
@@ -325,6 +343,7 @@ function updateChart4() {
 }
 
 function updateChart5() {
+    var max = document.getElementById("maxB+").value;
     if (Bp.value / max < 0) {
         Bp.value = 0;
         document.getElementById("B+").textContent = 0;
@@ -341,6 +360,7 @@ function updateChart5() {
 }
 
 function updateChart6() {
+    var max = document.getElementById("maxB-").value;
     if (Bn.value / max < 0) {
         Bn.value = 0;
         document.getElementById("B-").textContent = 0;
@@ -357,6 +377,7 @@ function updateChart6() {
 }
 
 function updateChart7() {
+    var max = document.getElementById("maxO+").value;
     if (Op.value / max < 0) {
         Op.value = 0;
         document.getElementById("O+").textContent = 0;
@@ -373,6 +394,7 @@ function updateChart7() {
 }
 
 function updateChart8() {
+    var max = document.getElementById("maxO-").value;
     if (On.value / max < 0) {
         On.value = 0;
         document.getElementById("O-").textContent = 0;

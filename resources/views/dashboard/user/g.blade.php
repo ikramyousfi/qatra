@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('headers')
-    <title>Home</title>
+    <title>Donneur | Profil</title>
     <link href="{{ asset('css/messages.css') }}" rel="stylesheet">
+    <link href="{{ asset('fontawesome-free-5.15.3/css/all.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -10,15 +11,18 @@
         <div class="card" style="width: unset;">
             <div class="card-body">
                 <div style="float: right; text-align: center; ">
-                    <h5>Capacite: </h5>
-                    <h3 class="pt-3"> {{ $data[1]->max }}</h3>
+                    <img src="{{ asset('photo/placeholder.png') }}" alt="...">
                 </div>
                 <h4 class="card-title">Nom: {{ $data[0]->username }}</h4>
                 <a class="card-subtitle mt-4 text-muted link" href="{{ $data[0]->link }}">Adresse:
                     {{ $data[0]->adresse }}</a>
-                <p class="card-text mt-2">Email: {{ $data[0]->email }} / Phone: {{ $data[0]->numero_de_telephone }}</p>
-                {{-- <a href="#" class="card-link">Next</a>
-                <a href="#" class="card-link">Previousk</a> --}}
+                <br>
+                <i class="fas fa-at"><small>&nbsp;{{ $data[0]->email }}</small></i>
+                <br>
+                <i class="fas fa-mobile-alt"><small>&nbsp;{{ $data[0]->numero_de_telephone }}</small></i>
+
+                <a href="#/.." class="card-link">retour</a>
+                {{-- <a href="#" class="card-link">Previousk</a> --}}
             </div>
         </div>
         <iframe

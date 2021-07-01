@@ -1,0 +1,12 @@
+body {
+    background: -webkit-linear-gradient(left, #ebcbc4, #cc2e2e);
+}
+
+.div {
+    margin-left:30vw;
+    padding: 5%;
+    margin-right:30vw;
+
+    border-radius: 25px; 
+    background-color:white;
+}

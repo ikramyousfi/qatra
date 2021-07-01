@@ -1,44 +1,29 @@
 @extends('layouts.app')
 
 @section('headers')
-    <title>Profile | Home</title>
+    <title>Admin| Acceuil</title>
+     <link href="{{ asset('css/adminprf.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-{{-- 
-    <div id="mySidenav" class="sidenav">
-
-        <a><img class="Qatra-img" src="{{ asset('photo/logo.ico') }}" alt="img" width="170" height="170"></a>
-        <a href="/">Accueil</a>
-        <a href="{{ route('admin.home') }}">Profile</a>
-        <a href="{{ route('admin.messages') }}">Mes messages </a>
-        <a href="{{ route('admin.userlist') }}">liste des donneurs</a>
-        <a href="{{ route('admin.gslist') }}">Liste des Gestionnaires </a>
-        </form>
-        <a href="{{ route('admin.logout') }}"
-            onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-        <form action="{{ route('admin.logout') }}" method="post" class="d-none" id="logout-form">
-            @csrf
-        </form>
-    </div> --}}
-
     <br><br>
-    <div style="margin-left:35vw;">
-    <h3 style="margin-left:7vw" >Admin Dashboard</h3>
+    <div class="div">
+    <h3 style="margin-left:7vw;" >Admin | Profil</h3>
 
-
-    <form action="{{ route('admin.update') }}" method="post">
-
+<br>
         @if (Session::get('message'))
-            <span class="alert alert-success">
+            <span class="alert alert-success" style="padding-left:10%; padding-right:0%">
                 {{ Session::get('message') }}
             </span>
             <br>
         @endif
+        <br>
+    <form action="{{ route('admin.update') }}" method="post">
+
 
         @csrf
         @method('PUT')
-        <div class="form-group col-4 mt-3">
+        <div class="form-group col-4 mt-3" >
             <label for="name">Nom</label>
             <input type="text" class="form-control" name="name" id="name" style="width: 400px; height:50px"
                 value="{{ Auth::guard('admin')->user()->name }}">
@@ -54,7 +39,7 @@
                 value="{{ Auth::guard('admin')->user()->phone }}">
         </div>
         <br><br>
-        <button type="submit" class="btn btn-success" style="margin-left:15%;background-color: #404040">Update</button>
+        <button type="submit" class="btn btn-success" style="margin-left:35%;background-color: #404040">Mettre à jour</button>
 
     </form>
 </div>

@@ -38,8 +38,8 @@ $(document).ready(function () {
     var calendar = $('#calendar').fullCalendar({
         editable:true,
         header:{
-            left:'prev,next today',
             center:'title',
+            left:'prev,next today',
             right:'month,agendaWeek,agendaDay'
         },
         events:'/calendar',

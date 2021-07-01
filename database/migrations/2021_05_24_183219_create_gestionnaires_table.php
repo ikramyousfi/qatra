@@ -20,10 +20,11 @@
                 $table->string('username')->unique();
                 $table->string('adresse');
                 $table->string('region');
+                $table->string('image')->nullable();
                 $table->string('link');
                 $table->string('numero_de_telephone');
                 $table->string('email')->unique();
-                $table->tinyInteger('IsBan')->default('0');
+                $table->tinyInteger('IsBan')->default('1');
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
                 $table->rememberToken();

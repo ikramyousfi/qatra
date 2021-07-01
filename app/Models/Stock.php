@@ -10,15 +10,22 @@ class Stock extends Model
     use HasFactory;
 
     protected $fillable = [
-        'max',
         'AB+',
+        'maxAB+',
         'AB-',
+        'maxAB-',
         'A+',
+        'maxA+',
         'A-',
+        'maxA-',
         'B+',
+        'maxB+',
         'B-',
+        'maxB-',
         'O+',
-        'O-'
+        'maxO+',
+        'O-',
+        'maxO-',
     ];
 
     public function gestionnaire()

@@ -9,6 +9,6 @@
 .notif:hover > * {
     color: white !important;
 }
-.notif:hover > #grp {
-    color: white;
+.notif:hover > h2 {
+    color: white !important;
 }

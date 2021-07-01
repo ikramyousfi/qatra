@@ -33,3 +33,7 @@ h2,
 h3 {
     color: #404040;
 }
+
+.navbar {
+    height: 9.5vh;
+}

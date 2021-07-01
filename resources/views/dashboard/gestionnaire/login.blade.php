@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('headers')
-    <title>Gestionnaire | login</title>
+    <title>Gestionnaire | Connexion</title>
     <link href="{{ asset('css/loginAdmin.css') }}" rel="stylesheet">
 @endsection
 
@@ -40,9 +40,12 @@
                                 <button type="submit" class="btn btn2 btn-secondary">Connexion</button>
                             </div>
                             <br>
+                            <a href="{{ route('gestionnaire.reset') }}" class="link-secondary">Mot de passe oublié</a>
+                            <br>
+                            <br>
                             <a href="{{ route('gestionnaire.register') }}" class="link-secondary">Créer un nouveau compte</a>
                             <br>
-                            <a href="{{ route('gestionnaire.login') }}" class="link-secondary">Se connecter au tant que
+                            <a href="{{ route('user.login') }}" class="link-secondary">Se connecter au tant que
                                 donneur</a>
                         </form>
                     </div>

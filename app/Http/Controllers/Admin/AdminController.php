@@ -27,7 +27,7 @@ class AdminController extends Controller
             'email' => 'required|email|exists:admins,email',
             'password' => 'required|min:5|max:30'
         ], [
-            'email.exists' => 'This email is not exists in admins table'
+            'email.exists' => "Cet email n'existe pas 🥲"
         ]);
 
         $creds = $request->only('email', 'password');
@@ -35,29 +35,25 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($creds)) {
             return redirect()->route('admin.home');
         } else {
-            return redirect()->route('admin.login')->with('fail', 'Incorrect credentials');
+            return redirect()->route('admin.login')->with('fail', 'Mot de passe incorrect 🤬');
         }
     }
 
     function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect()->back();;
+        return redirect()->back();
     }
 
-    public function displayuser()
+    function displayuser()
     {
-        //        if(Auth::user()->role == 'admin')
         $data = User::all();
-
         return view('dashboard.admin.usertable', ['key' => $data]);
     }
 
-    public function displaygs()
+    function displaygs()
     {
-        //        if(Auth::user()->role == 'admin')
         $value = Gestionnaire::all();
-
         return view('dashboard.admin.gstable', ['cle' => $value]);
     }
 
@@ -67,14 +63,16 @@ class AdminController extends Controller
 
         $users = User::findOrfail($id);
         $users->delete();
-        return redirect('/admin/userT')->with('message', 'Success your data has been deleted');
+        return redirect('/admin/userT')->with('message', "L'utilisateur a été supprimé ");
     }
 
     function deletegs($id)
     {
         $gs = Gestionnaire::findOrfail($id);
         $gs->delete();
-        return redirect('/admin/gsT')->with('message', 'Success your data has been deleted');
+        DB::table('stocks')->where('gestionnaire_id', $id)->delete();
+        DB::table('notifications')->where('gestionnaire_id', $id)->delete();
+        return redirect('/admin/gsT')->with('message', "Le gestionnaire a été supprimé ");
     }
 
     function changestatus($id)
@@ -91,7 +89,7 @@ class AdminController extends Controller
         DB::table('users')->where('id', $id)->update($values);
 
 
-        return redirect('/admin/userT')->withMessage('It has been changed successfully');
+        return redirect('/admin/userT')->withMessage("L'utilisateur a été banni / débanni");
     }
 
     function changestatusgs($id)
@@ -108,14 +106,10 @@ class AdminController extends Controller
         DB::table('gestionnaires')->where('id', $id)->update($vals);
 
 
-        return redirect('/admin/gsT')->withMessage('It has been changed successfully');
+        return redirect('/admin/gsT')->withMessage("Le gestionnaire a été banni / débanni");
     }
 
-    //    public function edit(){
-    //       return view('dashboard.admin.home');
-    //
-    //    }
-    public function update(UpdateProfileRequest $request)
+    function update(UpdateProfileRequest $request)
     {
         $admin = Admin::find(1);
         $admin->update([
@@ -123,71 +117,24 @@ class AdminController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
         ]);
-        return redirect()->back()->with('message', 'You have updated your profile successfully ');
+        return redirect()->back()->with('message', "Votre profile a été mis a jour");
     }
 
     function messages()
     {
         $data = DB::table('messages')->get();
-
-        // dd($data);
         return view('dashboard.admin.messages', compact('data'));
     }
 
     function inbox($id)
     {
         $data = DB::table('messages')->where('id', $id)->get();
-
-        // dd($data);  
         return view('dashboard.admin.inbox', compact('data'));
     }
 
-    public function deleteMessage($id)
+    function deleteMessage($id)
     {
-
         $query = DB::table('messages')->where('id', $id)->delete();
-
-        return redirect()->back()->with('message', 'Success the message has been deleted');
+        return redirect()->back()->with('message', 'Le message a été supprimé');
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    public function getAllAdmins(){
-//        $admins = DB::table('Admins',)->get();
-//        return view('admin', compact($admins));
-//    }
-//
-//    public function acceptGestionnaire(Request $request){
-//        $nom = $request->input('nom');
-//        $prenom = $request->input('prenom');
-//        $nom_de_hopital = $request->input('nom_de_hopital');
-//        $numero_de_telephone = $request->input('numero_de_telephone');
-//        $email = $request->input('email');
-//        $password = $request->input('password');
-//        $gest = ['nom' => $nom,
-//            'prenom' => $prenom,
-//            'nom_de_hopital' => $nom_de_hopital,
-//            'numero_de_telephone' => $numero_de_telephone,
-//            'email' => $email,
-//            'numero_de_telephone' => $password
-//            ];
-//        DB::table('gestionnaires')->insert($gest);
-//
-//        return redirect('/admin/requests');
-//
-//    }

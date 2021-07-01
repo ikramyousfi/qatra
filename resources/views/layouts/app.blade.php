@@ -4,10 +4,8 @@
 <head>
     @yield('headers')
     <meta charset="utf-8">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1"> --}}
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <link rel="icon" href="{{ asset('photo/blood-donation.png') }}">
-    <title>Qatra</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -56,13 +54,13 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         @if (Auth::guard('web')->check())
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('user.home') }}">Profile</a>
+                                <a class="nav-link active" href="{{ route('user.home') }}">Profil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('user.notifications') }}">Notifications</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.calendar') }}">Calendar</a>
+                                <a class="nav-link" href="{{ route('user.calendar') }}">Calendrier</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contact') }}">Contactez nous</a>
@@ -70,7 +68,7 @@
 
                         @elseif (Auth::guard('doctor')->check())
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('gestionnaire.home') }}">Profile</a>
+                                <a class="nav-link active" href="{{ route('gestionnaire.home') }}">Profil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('gestionnaire.stock') }}">Stock</a>
@@ -80,11 +78,11 @@
                                     href="{{ route('gestionnaire.notifications') }}">Notifications</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('gestionnaire.calendar') }}">Calendar</a>
+                                <a class="nav-link" href="{{ route('gestionnaire.calender') }}">Calendrier</a>
                             </li>
                         @elseif (Auth::guard('admin')->check())
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ route('admin.home') }}">Profile</a>
+                                <a class="nav-link active" href="{{ route('admin.home') }}">Profil</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.messages') }}">Messages</a>
@@ -114,7 +112,7 @@
                                 <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
                                     data-bs-toggle="dropdown">
-                                    {{ Auth::guard('doctor')->user()->name }}
+                                    {{ Auth::guard('doctor')->user()->username }}
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink"
@@ -123,12 +121,12 @@
 
                                     <li><a width="20px" class="dropdown-item p-1"
                                             href="{{ route('gestionnaire.update') }}" position="sticky">
-                                            Update Profile
+                                            Modifier Profil
                                         </a></li>
                                     <li><a width="20px" class="dropdown-item p-1"
                                             href="{{ route('gestionnaire.logout') }}" position="sticky" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            Se déconnecter
                                         </a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         class="d-none">
@@ -142,7 +140,7 @@ document.getElementById('logout-form').submit();">
                         <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
                             data-bs-toggle="dropdown">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->username }}
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-right hamburger" aria-labelledby="navbarDropdownMenuLink"
@@ -150,14 +148,14 @@ document.getElementById('logout-form').submit();">
 
                             <li><a width="20px" class="dropdown-item p-1" href="{{ route('user.edit') }}"
                                     position="sticky">
-                                    Edit profile
+                                    Modifier profil
                                 </a></li>
 
 
                             <li><a width="20px" class="dropdown-item p-1" href="{{ route('logout') }}"
                                     position="sticky" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    Se déconnecter
                                 </a></li>
 
                             <li>
@@ -186,7 +184,7 @@ document.getElementById('logout-form').submit();">
                             <li><a width="20px" class="dropdown-item p-1" href="{{ route('admin.logout') }}"
                                     position="sticky" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    Se déconnecter
                                 </a></li>
 
                             <li>

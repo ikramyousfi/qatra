@@ -31,10 +31,7 @@ class ContactFormController extends Controller
             'message' => $request->input('message')
         ]);
 
-        
-            return redirect('contact')->with('message', 'Thanks for your message. We\'ll be in touch.');
-        
-            // return redirect()->back()->with('fail', 'Something went wrong.');
-       
+
+        return redirect('contact')->with('message', 'Votre message est en cours de traitement, restez en contact.');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('headers')
 
-    <title>User Register</title>
+    <title>Donneur | Inscription</title>
 @endsection
 
 
@@ -39,67 +39,67 @@
                         <span class="text-danger">@error('prenom'){{ $message }} @enderror</span>
                     </div>
                     <div class="form-group">
-                        <label for="region">Region</label>
+                        <label for="region">Région</label>
                         <select id+="region" class="form-select input " name="region" required>
-                            <option value="">region</option>
-                            <option value="1">1 - Adrar </option>
-                            <option value="2">2 - Chlef </option>
-                            <option value="3">3 - Laghouat </option>
-                            <option value="4">4 - Oum bouaghi </option>
-                            <option value="5">5 - Batna </option>
-                            <option value="6">6 - Bejaia </option>
-                            <option value="7">7 - Biskra </option>
-                            <option value="8">8 - Bechar </option>
-                            <option value="9">9 - Blida </option>
-                            <option value="10">10 - Bouira </option>
-                            <option value="11">11 - Tamanrasset </option>
-                            <option value="12">12 - Tebessa </option>
-                            <option value="13">13 - Tlemcen </option>
-                            <option value="14">14 - Tiaret </option>
-                            <option value="15">15 - Tizi ouzou</option>
-                            <option value="16">16 - Alger </option>
-                            <option value="17">17 - Djelfa </option>
-                            <option value="18">18 - Jijel </option>
-                            <option value="19">19 - Setif </option>
-                            <option value="20">20 - Saida </option>
-                            <option value="21">21 - Skikda </option>
-                            <option value="22">22 - Sidi Bel Abbes</option>
-                            <option value="23">23 - Annaba </option>
-                            <option value="24">24 - Guelma </option>
-                            <option value="25">25 - Constantine </option>
-                            <option value="26">26 - Medea </option>
-                            <option value="27">27 - Mostaganem </option>
-                            <option value="28">28 - M'sila </option>
-                            <option value="29">29 - Mascara </option>
-                            <option value="30">30 - Ouargla </option>
-                            <option value="31">31 - Oran </option>
-                            <option value="32">32 - El Baydh </option>
-                            <option value="33">33 - Illizi </option>
-                            <option value="34">34 - Bordj Bou Arreridj</option>
-                            <option value="35">35 - Boumerdes </option>
-                            <option value="36">36 - El Taref </option>
-                            <option value="37">37 - Tindouf </option>
-                            <option value="38">38 - Tissemsilt </option>
-                            <option value="39">39 - El Oued </option>
-                            <option value="40">40 - Khenchla </option>
-                            <option value="41">41 - Souk Ahrass</option>
-                            <option value="42">42 - Tipaza </option>
-                            <option value="43">43 - Mila </option>
-                            <option value="44">44 - Aïn Defla</option>
-                            <option value="45">45 - Nâama </option>
-                            <option value="46">46 - Aïn Temouchent</option>
-                            <option value="47">47 - Ghardaïa </option>
-                            <option value="48">48 - Relizane </option>
-                            <option value="49">49 - Timimoun </option>
-                            <option value="50">50 - Bordj Badji Mokhtar</option>
-                            <option value="51">51 - Ouled Djellal</option>
-                            <option value="52">52 - Béni Abbès</option>
-                            <option value="53">53 - In Salah </option>
-                            <option value="54">54 - In Guezzam </option>
-                            <option value="55">55 - Touggourt </option>
-                            <option value="56">56 - Djanet </option>
-                            <option value="57">57 - El MGhair </option>
-                            <option value="58">58 - El Meniaa </option>
+                            <option value="">Region</option>
+                            <option value="Adrar ">1 - Adrar </option>
+                            <option value="Chlef ">2 - Chlef </option>
+                            <option value="Laghouat ">3 - Laghouat </option>
+                            <option value="Oum bouaghi ">4 - Oum bouaghi </option>
+                            <option value="Batna ">5 - Batna </option>
+                            <option value="Bejaia ">6 - Bejaia </option>
+                            <option value="Biskra ">7 - Biskra </option>
+                            <option value="Bechar ">8 - Bechar </option>
+                            <option value="Blida ">9 - Blida </option>
+                            <option value="Bouira ">10 - Bouira </option>
+                            <option value="Tamanrasset ">11 - Tamanrasset </option>
+                            <option value="Tebessa ">12 - Tebessa </option>
+                            <option value="Tlemcen ">13 - Tlemcen </option>
+                            <option value="Tiaret ">14 - Tiaret </option>
+                            <option value="Tizi ouzou">15 - Tizi ouzou</option>
+                            <option value="Alger ">16 - Alger </option>
+                            <option value="Djelfa ">17 - Djelfa </option>
+                            <option value="Jijel ">18 - Jijel </option>
+                            <option value="Setif ">19 - Setif </option>
+                            <option value="Saida ">20 - Saida </option>
+                            <option value="Skikda ">21 - Skikda </option>
+                            <option value="Sidi Bel Abbes">22 - Sidi Bel Abbes</option>
+                            <option value="Annaba ">23 - Annaba </option>
+                            <option value="Guelma ">24 - Guelma </option>
+                            <option value="Constantine ">25 - Constantine </option>
+                            <option value="Medea ">26 - Medea </option>
+                            <option value="Mostaganem ">27 - Mostaganem </option>
+                            <option value="M'sila ">28 - M'sila </option>
+                            <option value="Mascara ">29 - Mascara </option>
+                            <option value="Ouargla ">30 - Ouargla </option>
+                            <option value="Oran ">31 - Oran </option>
+                            <option value="El Baydh ">32 - El Baydh </option>
+                            <option value="Illizi ">33 - Illizi </option>
+                            <option value="Bordj Bou Arreridj">34 - Bordj Bou Arreridj</option>
+                            <option value="Boumerdes ">35 - Boumerdes </option>
+                            <option value="El Taref ">36 - El Taref </option>
+                            <option value="Tindouf ">37 - Tindouf </option>
+                            <option value="Tissemsilt ">38 - Tissemsilt </option>
+                            <option value="El Oued ">39 - El Oued </option>
+                            <option value="Khenchla ">40 - Khenchla </option>
+                            <option value="Souk Ahrass">41 - Souk Ahrass</option>
+                            <option value="Tipaza ">42 - Tipaza </option>
+                            <option value="Mila ">43 - Mila </option>
+                            <option value="Aïn Defla">44 - Aïn Defla</option>
+                            <option value="Nâama ">45 - Nâama </option>
+                            <option value="Aïn Temouchent">46 - Aïn Temouchent</option>
+                            <option value="Ghardaïa ">47 - Ghardaïa </option>
+                            <option value="Relizane ">48 - Relizane </option>
+                            <option value="Timimoun ">49 - Timimoun </option>
+                            <option value="Bordj Badji Mokhtar">50 - Bordj Badji Mokhtar</option>
+                            <option value="Ouled Djellal">51 - Ouled Djellal</option>
+                            <option value="Béni Abbès">52 - Béni Abbès</option>
+                            <option value="In Salah ">53 - In Salah </option>
+                            <option value="In Guezzam ">54 - In Guezzam </option>
+                            <option value="Touggourt ">55 - Touggourt </option>
+                            <option value="Djanet ">56 - Djanet </option>
+                            <option value="El MGhair ">57 - El MGhair </option>
+                            <option value="El Meniaa ">58 - El Meniaa </option>
                         </select>
                         <span class="text-danger">@error('region'){{ $message }} @enderror</span>
                     </div>

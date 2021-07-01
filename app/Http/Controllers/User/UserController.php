@@ -38,7 +38,7 @@ class UserController extends Controller
     //        return view('home');
     //    }
 
-    public function index(Request $request)
+    function index(Request $request)
     {
         if ($request->ajax()) {
             $data = Event::whereDate('start', '>=', $request->start)
@@ -53,10 +53,12 @@ class UserController extends Controller
         return view('dashboard.user.full-calender');
     }
 
-    public function action(Request $request)
+    function action(Request $request)
     {
         if ($request->ajax()) {
-            if ($request->type == 'update') {
+            if (
+                $request->type == 'update'
+            ) {
                 $event = Event::find($request->id)->update([
                     'count' => $request->count
                 ]);
@@ -71,9 +73,9 @@ class UserController extends Controller
         //Validate Inputs
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'username' => 'required|unique:users',
             'prenom' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,username',
             'region' => 'required',
             'groupe_sanguin' => 'required',
             'numero_de_telephone' => 'required',
@@ -83,13 +85,14 @@ class UserController extends Controller
 
         $user = new User();
         $user->name = $request->name;
-        $user->email = $request->email;
-        $user->username = $request->username;
         $user->prenom = $request->prenom;
+        $user->username = $request->username;
+        $user->email = $request->email;
         $user->region = $request->region;
         $user->groupe_sanguin = $request->groupe_sanguin;
         $user->sexe = $request->sexe;
         $user->numero_de_telephone = $request->numero_de_telephone;
+        $user->image = 'profile/profilepicture.png';
         $user->password = Hash::make($request->password);
 
         $save = $user->save();
@@ -97,7 +100,7 @@ class UserController extends Controller
         if ($save && Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('user.home');
         } else {
-            return redirect()->back()->with('fail', 'Something went wrong, failed to register');
+            return redirect()->back()->with('fail', "Oups, un problème est survenus ");
         }
     }
 
@@ -109,24 +112,20 @@ class UserController extends Controller
             'password' => 'required|min:5|max:30',
 
         ], [
-            'email.exists' => 'This email does not exist on users table'
+            'email.exists' => "Cet email n'existe pas 🥲"
         ]);
 
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             if (Auth::guard('web')->user()->IsBan == 1) {
                 Auth::guard('web')->logout();
-                return redirect()->route('user.login')->with('fail', ' Oops, You been banned');
+                return redirect()->route('user.login')->with('fail', ' Oops, vous avez ete bani 😬');
             } else {
                 return redirect()->route('user.home');
             }
         } else {
-            return redirect()->route('user.login')->with('fail', ' Oops, wrong password ');
+            return redirect()->route('user.login')->with('fail', 'Mot de passe incorrect 🤬');
         }
     }
-
-
-
-
 
     function logout()
     {
@@ -134,35 +133,6 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-
-    // public function update(UpdateProfileRequest $request)
-    // {
-
-    //     $user = Auth::guard('web')->user();
-
-    //     $data = request()->validate([
-    //         'name' => 'required',
-    //         'prenom' => 'required',
-    //         'region' => 'required',
-    //         'numero_de_telephone' => 'required',
-    //         'adresse' => 'required',
-    //         'allergies' => 'required',
-    //         'birthdate' => 'required',
-    //     ]);
-
-    // if (request('image')) {
-    //     $imagePath = request('image')->store('profilePictures', 'public');
-    //     $image = Image::make(public_path("storage/{$imagePath}"))->fit(480, 480);
-    //     $image->save();
-    // }
-    // dd($data);
-    // DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
-    //     $data,
-    //     ['image' => $imagePath]
-    // ));
-
-    //     return redirect()->back()->with('message', 'You have changed your profile successfully ');
-    // }
 
     function notifications()
     {
@@ -193,7 +163,7 @@ class UserController extends Controller
         return view('dashboard.user.edit');
     }
 
-    public function reserve(Request $request)
+    function reserve(Request $request)
     {
         if ($request->ajax()) {
             $data = Event::whereDate('start', '>=', $request->start)
@@ -208,8 +178,7 @@ class UserController extends Controller
     function g($id)
     {
         $data = DB::table('gestionnaires')->where('id', $id)->get(['username', 'adresse', 'region', 'link', 'numero_de_telephone', 'email'])->toArray();
-        $max = DB::table('stocks')->where('gestionnaire_id', $id)->get('max')->toArray();
-        $data = array_merge($data, $max);
+
         return view('dashboard.user.g', compact('data'));
     }
 
@@ -222,9 +191,29 @@ class UserController extends Controller
             'numero_de_telephone' => 'required',
             'groupe_sanguin' => 'required',
             'adresse' => 'required',
+            'image' => '',
         ]);
 
-        Auth::user()->update($data);
+        if (request('image')) {
+            $imagePath = request('image')->store('profile', 'public');
+
+            $image = Image::make(request()->file('image')->getRealPath())->fit(1000, 1000);
+            $image->save();
+
+            $imageArray = ['image' => $imagePath];
+        }
+
+
+        auth()->user()->update(array_merge(
+            $data,
+            $imageArray ?? []
+        ));
+
+        //Auth::user()->update($data);
+        DB::table('users')->where('id', Auth::user()->id)->update(array_merge(
+            $data,
+            $imageArray ?? []
+        ));
 
         return redirect('user/home');
     }

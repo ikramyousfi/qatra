@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('headers')
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-    <title>Welcome</title>
+    <title>Accueil</title>
 
 @endsection
 
@@ -34,7 +34,7 @@
         <img class="Qatra-apr1" src="{{ asset('photo/Apropos1.png') }}" alt="">
         <div class="text">
             <p id="qst"><strong>Qui sommes nous ? </strong></p>
-            <p id="apr">L'entreprise Blood Bank a pour but de simplifier le don de sang à travers le site web qui permet de
+            <p id="apr">L'entreprise SunTech a pour but de simplifier le don de sang à travers le site web qui permet de
                 regrouper le maximum de donneurs de sang dans une région et faciliter les dons en cas d'urgences. </p>
         </div>
     </div>
@@ -49,15 +49,15 @@
         </div>
     </div>
 
-    
-<div class="et" style="text-align:center">
+
+    <div class="et" style="text-align:center">
 
 
-<img class="carre1" src=" {{ asset('photo//etape1.jpg') }}" alt="img" >
-<img class="carre2" src=" {{ asset('photo//etape2.jpg') }}" alt="img" >
-<img class="carre3" src="{{ asset('photo//etape3.jpg') }}" alt="img" >
+        <img class="carre1" src=" {{ asset('photo//etape1.jpg') }}" alt="img">
+        <img class="carre2" src=" {{ asset('photo//etape2.jpg') }}" alt="img">
+        <img class="carre3" src="{{ asset('photo//etape3.jpg') }}" alt="img">
 
 
-</div>
+    </div>
 
 @endsection

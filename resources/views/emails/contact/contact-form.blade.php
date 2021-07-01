@@ -1,5 +1,5 @@
 @component('mail::message')
-    # Thank you for your message
+    # Merci pour votre message
 
      Name {{ $data['name'] }}
      Email {{ $data['email'] }}

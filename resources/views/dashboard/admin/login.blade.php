@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('headers')
-    <title>admin login | Home</title>
+    <title>Admin | connexion</title>
     <link href="{{ asset('css/loginAdmin.css') }}" rel="stylesheet">
 @endsection
 

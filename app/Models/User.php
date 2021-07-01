@@ -12,23 +12,24 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
 
-   protected $guard = 'user';
+    protected $guard = 'user';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-   protected $fillable = [
+    protected $fillable = [
         'name',
         'username',
         'email',
         'prenom',
         'region',
         'groupe_sanguin',
+        'adresse',
+        'image',
         'numero_de_telephone',
         'IsBan',
-        'avatar',
         'password',
     ];
 
@@ -50,7 +51,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
 }
-
