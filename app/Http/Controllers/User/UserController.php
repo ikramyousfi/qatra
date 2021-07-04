@@ -76,6 +76,7 @@ class UserController extends Controller
             'prenom' => 'required',
             'email' => 'required|email|unique:users,email',
             'username' => 'required|unique:users,username',
+            'adresse' => 'required',
             'region' => 'required',
             'groupe_sanguin' => 'required',
             'numero_de_telephone' => 'required',
@@ -88,6 +89,7 @@ class UserController extends Controller
         $user->prenom = $request->prenom;
         $user->username = $request->username;
         $user->email = $request->email;
+        $user->adresse = $request->adresse;
         $user->region = $request->region;
         $user->groupe_sanguin = $request->groupe_sanguin;
         $user->sexe = $request->sexe;

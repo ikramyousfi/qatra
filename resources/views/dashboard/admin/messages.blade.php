@@ -14,6 +14,11 @@
                         {{ Session::get('message') }}
                     </div>
                 @endif
+                @if (Session::get('mes'))
+                    <div class="alert alert-success">
+                        {{ Session::get('mes') }}
+                    </div>
+                @endif
                 <div class=" mt-5 list-group">
                     @foreach ($data as $v)
 

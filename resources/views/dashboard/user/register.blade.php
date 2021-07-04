@@ -39,6 +39,12 @@
                         <span class="text-danger">@error('prenom'){{ $message }} @enderror</span>
                     </div>
                     <div class="form-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" class="form-control " name="adresse" placeholder="Entrez votre adresse"
+                            value="{{ old('adresse') }}">
+                        <span class="text-danger">@error('adresse'){{ $message }} @enderror</span>
+                    </div>
+                    <div class="form-group">
                         <label for="region">Région</label>
                         <select id+="region" class="form-select input " name="region" required>
                             <option value="">Region</option>

@@ -135,6 +135,6 @@ class AdminController extends Controller
     function deleteMessage($id)
     {
         $query = DB::table('messages')->where('id', $id)->delete();
-        return redirect()->back()->with('message', 'Le message a été supprimé');
+        return redirect('/admin/inbox')->with('mes', 'Le message a été supprimé');
     }
 }
