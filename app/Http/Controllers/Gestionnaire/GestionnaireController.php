@@ -119,24 +119,6 @@ class GestionnaireController extends Controller
 
     function addNotification(Request $request)
     {
-        // Auth::guard('doctor')->user()->stock->update([
-        //     'AB+' => $request->input('AB+'),
-        //     'maxAB+' => $request->input('maxAB+'),
-        //     'AB-' => $request->input('AB-'),
-        //     'maxAB-' => $request->input('maxAB-'),
-        //     'A+' => $request->input('A+'),
-        //     'maxA+' => $request->input('maxA+'),
-        //     'A-' => $request->input('A-'),
-        //     'maxA-' => $request->input('maxA-'),
-        //     'B+' => $request->input('B+'),
-        //     'maxB+' => $request->input('maxB+'),
-        //     'B-' => $request->input('B-'),
-        //     'maxB-' => $request->input('maxB-'),
-        //     'O+' => $request->input('O+'),
-        //     'maxO+' => $request->input('maxO+'),
-        //     'O-' => $request->input('O-'),
-        //     'maxO-' => $request->input('maxO-')
-        // ]);
 
         $grp = ["AB+", "AB-", "A+", "A-", "B+", "B-", "O+", "O-"];
         $max = ["maxAB+", "maxAB-", "maxA+", "maxA-", "maxB+", "maxB-", "maxO+", "maxO-"];
@@ -179,10 +161,7 @@ class GestionnaireController extends Controller
             'O-' => $request->input('O-'),
             'maxO-' => $request->input('maxO-')
         ];
-        // dd($data);
         Auth::guard('doctor')->user()->stock->update($data);
-        // DB::table('notifications')->where('gestionnaire_id', Auth::guard('doctor')->user()->id)->update($data);
-        // dd($request->all(), Auth::guard('doctor')->user()->stock->$m);
         return redirect()->back()->with('message', 'Mise à jour réussite');
     }
 

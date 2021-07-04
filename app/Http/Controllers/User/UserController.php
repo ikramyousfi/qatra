@@ -196,26 +196,26 @@ class UserController extends Controller
             'image' => '',
         ]);
 
+        // dd(request('image'));
+
         if (request('image')) {
             $imagePath = request('image')->store('profile', 'public');
 
             $image = Image::make(request()->file('image')->getRealPath())->fit(1000, 1000);
             $image->save();
-
-            $imageArray = ['image' => $imagePath];
         }
 
 
         auth()->user()->update(array_merge(
             $data,
-            $imageArray ?? []
+            ['image' => $imagePath]
         ));
 
         //Auth::user()->update($data);
-        DB::table('users')->where('id', Auth::user()->id)->update(array_merge(
-            $data,
-            $imageArray ?? []
-        ));
+        // DB::table('users')->where('username', Auth::user()->username)->update(array_merge(
+        //     $data,
+        //     $imageArray ?? []
+        // ));
 
         return redirect('user/home');
     }

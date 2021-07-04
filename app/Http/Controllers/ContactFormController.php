@@ -20,14 +20,12 @@ class ContactFormController extends Controller
     {
         //Validate Inputs
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
             'message' => 'required',
         ]);
 
         DB::table('messages')->insert([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'name' => $request->input('name') ?? 'anonymous sender',
+            'email' => $request->input('email') ?? 'anon@anon.com',
             'message' => $request->input('message')
         ]);
 

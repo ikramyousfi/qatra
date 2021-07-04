@@ -326,7 +326,7 @@ function updateChart3() {
 }
 
 function updateChart4() {
-    var max = document.getElementById("maxAB-").value;
+    var max = document.getElementById("maxA-").value;
     if (An.value / max < 0) {
         An.value = 0;
         document.getElementById("A-").textContent = 0;

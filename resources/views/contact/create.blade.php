@@ -26,15 +26,23 @@
                     @csrf
                     <div class="form-group pb-2">
                         <label for="name">Nom</label>
-                        <input type="text" class="form-control" name="name"
-                            value="{{ Auth::user()->name ?? (Session::get('name') ?? old('name')) }}" required>
+                        @if (Auth::user()->email ?? Session::get('email'))
+                            <input type="text" class="form-control" name="name"
+                                value="{{ Auth::user()->name ?? Session::get('name') }}" disabled>
+                        @else
+                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                        @endif
                         <span class="text-danger"> @error('name'){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group pb-2">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email"
-                                value="{{ Auth::user()->email ?? (Session::get('email') ?? old('email')) }}" required>
+                            @if (Auth::user()->email ?? Session::get('email'))
+                                <input type="text" class="form-control" name="email"
+                                    value="{{ Auth::user()->email ?? Session::get('email') }}" disabled>
+                            @else
+                                <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                            @endif
                             <span class="text-danger"> @error('email'){{ $message }}@enderror</span>
                             </div>
 

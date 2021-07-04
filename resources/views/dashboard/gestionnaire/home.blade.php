@@ -19,7 +19,7 @@
                 <div class="col-md-4">
                     <div class="profile-img pb-3">
                         <img src="/storage/{{ Auth::user()->image }}" class="rounded-circle"
-                            style="height:15rem;width:15rem; c" alt="profile picture" />
+                            style="height:15rem;width:15rem;" alt="profile picture" />
                     </div>
                     <br>
                     <h5 style="text-align: center"> {{ Auth::user()->username }} </h5>
