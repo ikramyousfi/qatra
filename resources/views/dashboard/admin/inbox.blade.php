@@ -10,7 +10,7 @@
         <div class="card" style="width: unset;">
             <div class="card-body  ">
                 <small style="float: right">
-                    <form action="deleteMessage/{{ $data[0]->id }}" method="POST">
+                    <form action="../deleteMessage/{{ $data[0]->id }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
